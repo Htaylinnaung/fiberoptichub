@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="my"><head><meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="robots"
+    content="noindex, nofollow"
+>
+
+<title>
+    Article Publisher | Fiber Optic Hub
+</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+
+</head><body><header class="publisher-header">
+
+    <div class="publisher-logo">
+        Fiber <span>Optic Hub</span>
+    </div>
+
+    <div class="publisher-label">
+        ARTICLE PUBLISHER
+    </div>
+
+</header>
+
+
+<main class="publisher-container">
+
+
+    <!-- =========================
+         PAGE TITLE
+    ========================== -->
+
+    <section class="intro">
+
+        <span class="label">
+            ONE-CLICK ARTICLE SYSTEM
+        </span>
+
+        <h1>
+            Create New Article
+        </h1>
+
+        <p>
+            Article တစ်ပုဒ်ဖန်တီးရန် Topic နှင့်
+            လိုအပ်သောအချက်အလက်များကို ထည့်သွင်းပါ။
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ARTICLE FORM
+    ========================== -->
+
+    <section class="publisher-card">
+
+        <div class="form-group">
+
+            <label for="articleTitle">
+                Article Topic / Title
+            </label>
+
+            <input
+                type="text"
+                id="articleTitle"
+                placeholder="ဥပမာ - What is OLT?"
+            >
+
+        </div>
+
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label for="articleCategory">
+                    Category
+                </label>
+
+                <select id="articleCategory">
+
+                    <option value="Fiber Optic Basics">
+                        Fiber Optic Basics
+                    </option>
+
+                    <option value="FTTH">
+                        FTTH
+                    </option>
+
+                    <option value="Splicing">
+                        Splicing
+                    </option>
+
+                    <option value="Testing & Measurement">
+                        Testing & Measurement
+                    </option>
+
+                    <option value="Troubleshooting">
+                        Troubleshooting
+                    </option>
+
+                    <option value="Advanced">
+                        Advanced
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="articleLevel">
+                    Level
+                </label>
+
+                <select id="articleLevel">
+
+                    <option value="Beginner">
+                        Beginner
+                    </option>
+
+                    <option value="Intermediate">
+                        Intermediate
+                    </option>
+
+                    <option value="Advanced">
+                        Advanced
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="articleDescription">
+                Short Description
+            </label>
+
+            <textarea
+                id="articleDescription"
+                rows="3"
+                placeholder="Article အကြောင်း အကျဉ်းချုပ်..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="articleImage">
+                Article Image
+            </label>
+
+            <input
+                type="file"
+                id="articleImage"
+                accept="image/*"
+            >
+
+            <small>
+                Image မရှိရင် မထည့်လည်းရပါတယ်။
+            </small>
+
+        </div>
+
+
+        <!-- =========================
+             ACTIONS
+        ========================== -->
+
+        <div class="actions">
+
+            <button
+                type="button"
+                class="generate-btn"
+                onclick="generateArticle()"
+            >
+                🤖 Generate Article
+            </button>
+
+            <button
+                type="button"
+                class="clear-btn"
+                onclick="clearPublisher()"
+            >
+                Clear
+            </button>
+
+        </div>
+
+
+        <div
+            id="status"
+            class="status"
+        ></div>
+
+    </section>
+
+
+    <!-- =========================
+         PREVIEW
+    ========================== -->
+
+    <section
+        id="previewSection"
+        class="preview-section"
+    >
+
+        <div class="preview-header">
+
+            <div>
+
+                <span class="label">
+                    PREVIEW
+                </span>
+
+                <h2>
+                    Article Preview
+                </h2>
+
+            </div>
+
+            <span
+                id="previewStatus"
+                class="draft-badge"
+            >
+                DRAFT
+            </span>
+
+        </div>
+
+
+        <div
+            id="articlePreview"
+            class="article-preview"
+        >
+
+            <div class="empty-preview">
+
+                <div class="empty-icon">
+                    📄
+                </div>
+
+                <h3>
+                    No Article Yet
+                </h3>
+
+                <p>
+                    Topic ထည့်ပြီး
+                    Generate Article ကိုနှိပ်ပါ။
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             FACEBOOK PREVIEW
+        ========================== -->
+
+        <div class="facebook-preview">
+
+            <div class="preview-header">
+
+                <div>
+
+                    <span class="label">
+                        FACEBOOK
+                    </span>
+
+                    <h2>
+                        Facebook Post Preview
+                    </h2>
+
+                </div>
+
+                <span class="draft-badge">
+                    DRAFT
+                </span>
+
+            </div>
+
+
+            <div
+                id="facebookPreview"
+                class="facebook-post"
+            >
+
+                Facebook Post ကို
+                Generate လုပ်ပြီးနောက် ဒီနေရာမှာ ပြပါမယ်။
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PUBLISH BUTTON
+        ========================== -->
+
+        <div class="publish-area">
+
+            <button
+                type="button"
+                id="publishButton"
+                class="publish-btn"
+                onclick="publishArticle()"
+                disabled
+            >
+                🚀 Publish Article
+            </button>
+
+            <p>
+                Publish လုပ်တဲ့အခါ Website နှင့်
+                Facebook Auto Post System ကို ချိတ်ဆက်မယ်။
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">
+        Fiber <span>Optic Hub</span>
+    </div>
+
+    <div>
+        Article Publisher
+    </div>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body></html>

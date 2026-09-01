@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+<html lang="my">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="OLT (Optical Line Terminal) ဆိုတာဘာလဲ၊ FTTH နှင့် PON Network တွင် OLT ၏ လုပ်ဆောင်ချက်၊ Data Flow နှင့် အဓိကအစိတ်အပိုင်းများကို လေ့လာပါ။" name="description"/>
+<meta content="OLT (Optical Line Terminal) ဆိုတာဘာလဲ?" name="article-title"/>
+<meta content="2026-08-31T00:00:00+07:00" name="article-date"/>
+<meta content="FTTH" name="article-category"/>
+<meta content="FTTH နှင့် PON Network တွင် OLT ၏ အလုပ်လုပ်ပုံ၊ Data Flow၊ အဓိက Function များနှင့် Technical Specifications များကို လေ့လာနိုင်ပါသည်။" name="article-description"/>
+<!-- GOOGLE ANALYTICS -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1MTHL3RRGV"></script>
+<script>
+
+        window.dataLayer =
+            window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag(
+            'js',
+            new Date()
+        );
+
+        gtag(
+            'config',
+            'G-1MTHL3RRGV'
+        );
+
+    </script>
+<title>
+        OLT (Optical Line Terminal) ဆိုတာဘာလဲ? | Fiber Optic Hub
+    </title>
+<link href="../css/index.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<header>
+<div class="logo">🌐 Fiber <span>Optic Hub</span></div>
+<nav class="main-nav">
+<a href="../index.html">Home</a>
+<a href="../index.html#topics">Learn</a>
+<a href="../index.html#articles">Articles</a>
+<a href="../index.html#about">About</a>
+</nav>
+<button aria-expanded="false" aria-label="Open menu" class="menu" onclick="toggleMenu()" type="button">☰</button>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+<a href="../index.html" onclick="closeMenu()">🏠 Home</a>
+<a href="../index.html#topics" onclick="closeMenu()">📚 Learn</a>
+<a href="../index.html#articles" onclick="closeMenu()">📰 Articles</a>
+<a href="../index.html#about" onclick="closeMenu()">ℹ️ About</a>
+</div>
+
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+<!-- =====================================================
+     MAIN ARTICLE
+===================================================== -->
+<main class="article-page">
+<!-- BACK BUTTON -->
+<a class="back-btn" href="../index.html">
+        ← Back to Home
+    </a>
+<!-- ARTICLE TITLE -->
+<h1 class="article-page-title">
+
+        OLT (Optical Line Terminal)
+        ဆိုတာဘာလဲ?
+
+    </h1>
+<!-- ARTICLE META -->
+<p class="article-meta">FTTH • Beginner • ⏱️ 4 min read<br/>Published: 2026-08-31</p>
+<!-- =================================================
+         ARTICLE CONTENT
+    ================================================= -->
+<article class="article-content">
+<!-- =================================================
+             INTRODUCTION
+        ================================================= -->
+<h2>
+            OLT ဆိုတာဘာလဲ?
+        </h2>
+<p>
+
+            OLT ဆိုသည်မှာ
+            <strong>Optical Line Terminal</strong>
+            ၏ အတိုကောက်ဖြစ်ပြီး
+            FTTH (Fiber to the Home) နှင့်
+            အခြား PON (Passive Optical Network)
+            ကွန်ရက်များတွင် အသုံးပြုသော
+            အရေးကြီးသည့် ဗဟိုစက်ပစ္စည်းတစ်ခု ဖြစ်သည်။
+
+        </p>
+<p>
+
+            OLT သည် Service Provider ၏
+            Core Network နှင့်
+            Customer ဘက်ရှိ ONT/ONU များကြားတွင်
+            ဆက်သွယ်ပေးသော အဓိက Network Device ဖြစ်သည်။
+
+            အလွယ်ပြောရလျှင်
+            Internet Network မှလာသော Data များကို
+            PON Network မှတစ်ဆင့် Customer များထံ
+            ပို့ပေးရန်နှင့် Customer ဘက်မှ
+            ပြန်လာသော Data များကို
+            Network ဘက်သို့ ပြန်ပို့ရန်
+            OLT က အဓိကတာဝန်ယူသည်။
+
+        </p>
+<!-- INFO BOX -->
+<div class="info-box">
+<strong>
+                💡 အလွယ်ဆုံးမှတ်ရန်
+            </strong>
+<br/><br/>
+
+            OLT =
+            <strong>
+                Service Provider ဘက်ရှိ
+                PON Network ၏ အဓိက ဗဟိုစက်
+            </strong>
+<br/><br/>
+
+            OLT က
+            Internet/Core Network နှင့်
+            ONT/ONU Customer များကို
+            PON Network မှတစ်ဆင့်
+            ချိတ်ဆက်ပေးသည်။
+
+        </div>
+<!-- =================================================
+             HOW IT WORKS
+        ================================================= -->
+<h2>
+            OLT ဘယ်လိုအလုပ်လုပ်သလဲ?
+        </h2>
+<p>
+
+            PON Network တွင် OLT သည်
+            Optical Line ၏ အစပိုင်းဘက်တွင်ရှိပြီး
+            OLT မှ ထွက်လာသော Optical Signal သည်
+            Feeder Fiber မှတစ်ဆင့်
+            Passive Optical Splitter သို့
+            ရောက်ရှိသည်။
+
+        </p>
+<p>
+
+            Splitter သည်
+            OLT မှလာသော Optical Signal ကို
+            Customer များစွာထံသို့
+            ခွဲဝေပေးသည်။
+
+            ထို့နောက် Distribution Fiber နှင့်
+            Drop Fiber များမှတစ်ဆင့်
+            Customer အိမ်ရှိ
+            ONT သို့မဟုတ် ONU ထံသို့
+            Signal ရောက်ရှိသည်။
+
+        </p>
+<!-- FLOW -->
+<div class="info-box">
+<strong>
+                📡 Basic FTTH Signal Flow
+            </strong>
+<br/><br/>
+
+            OLT
+            →
+            Feeder Fiber
+            →
+            Optical Splitter
+            →
+            Distribution Fiber
+            →
+            Drop Fiber
+            →
+            ONT / ONU
+
+        </div>
+<!-- DOWNSTREAM -->
+<h3>
+            Downstream
+        </h3>
+<p>
+
+            Downstream ဆိုသည်မှာ
+            Service Provider ဘက်မှ
+            Customer ဘက်သို့
+            Data ပို့သည့် လမ်းကြောင်း ဖြစ်သည်။
+
+        </p>
+<ul>
+<li>
+                Core Network မှ Data ရောက်ရှိလာသည်။
+            </li>
+<li>
+                OLT သည် PON Network ဘက်သို့
+                Data ပို့ပေးသည်။
+            </li>
+<li>
+                Optical Signal သည်
+                Feeder Fiber မှတစ်ဆင့်
+                Splitter သို့ ရောက်ရှိသည်။
+            </li>
+<li>
+                Splitter မှတစ်ဆင့်
+                Customer ONT/ONU များထံသို့
+                Signal ဖြန့်ဝေပေးသည်။
+            </li>
+</ul>
+<!-- UPSTREAM -->
+<h3>
+            Upstream
+        </h3>
+<p>
+
+            Upstream ဆိုသည်မှာ
+            Customer ဘက်မှ
+            Service Provider Network ဘက်သို့
+            Data ပြန်ပို့သည့် လမ်းကြောင်း ဖြစ်သည်။
+
+        </p>
+<ul>
+<li>
+                Customer ONT/ONU မှ Data ပို့သည်။
+            </li>
+<li>
+                Data သည် Drop Fiber နှင့်
+                Distribution Fiber များကို
+                ဖြတ်သန်းသည်။
+            </li>
+<li>
+                Optical Splitter မှတစ်ဆင့်
+                Feeder Fiber သို့ ရောက်ရှိသည်။
+            </li>
+<li>
+                OLT သို့ ပြန်လည်ရောက်ရှိပြီး
+                Core Network ဘက်သို့
+                Data ဆက်လက်ပို့ပေးသည်။
+            </li>
+</ul>
+<!-- =================================================
+             IMAGE
+        ================================================= -->
+<figure class="article-figure" style="
+                width: 100%;
+                max-width: 700px;
+                margin: 30px auto;
+                text-align: center;
+            ">
+<img alt="OLT Optical Line Terminal in FTTH PON Network" loading="lazy" src="../images/olt.png" style="
+                    display: block;
+                    width: 100%;
+                    max-width: 650px;
+                    height: auto;
+                    max-height: 420px;
+                    object-fit: contain;
+                    margin: 0 auto;
+                    border-radius: 12px;
+                "/>
+<figcaption>
+
+                OLT (Optical Line Terminal)
+                နှင့် FTTH PON Network Data Flow
+
+            </figcaption>
+</figure>
+<!-- =================================================
+             MAIN COMPONENTS
+        ================================================= -->
+<h2>
+            OLT နှင့် ဆက်စပ်သော အဓိက အစိတ်အပိုင်းများ
+        </h2>
+<p>
+
+            OLT တစ်ခုတည်းဖြင့်
+            FTTH Network တစ်ခုလုံး
+            ပြီးစီးသွားခြင်း မဟုတ်ပါ။
+
+            OLT သည် PON Architecture အတွင်းရှိ
+            အခြား Network Components များနှင့်
+            ပူးပေါင်းပြီး အလုပ်လုပ်သည်။
+
+        </p>
+<table class="tech-table">
+<thead>
+<tr>
+<th>
+                        Component
+                    </th>
+<th>
+                        Function
+                    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+                        OLT
+                    </td>
+<td>
+                        Service Provider Network နှင့်
+                        PON Network ကြားတွင်
+                        Data ဆက်သွယ်ပေးသည်။
+                    </td>
+</tr>
+<tr>
+<td>
+                        Feeder Fiber
+                    </td>
+<td>
+                        OLT နှင့်
+                        Splitter ဘက်ကြားတွင်
+                        Optical Signal ပို့ပေးသည်။
+                    </td>
+</tr>
+<tr>
+<td>
+                        Optical Splitter
+                    </td>
+<td>
+                        Optical Signal ကို
+                        Customer များအတွက်
+                        ခွဲဝေပေးသည်။
+                    </td>
+</tr>
+<tr>
+<td>
+                        Distribution Fiber
+                    </td>
+<td>
+                        Splitter ဘက်မှ
+                        Customer Distribution Point
+                        များသို့ Signal ပို့ပေးသည်။
+                    </td>
+</tr>
+<tr>
+<td>
+                        Drop Fiber
+                    </td>
+<td>
+                        Customer အိမ်ဘက်ရှိ
+                        ONT/ONU ထံသို့
+                        နောက်ဆုံး Fiber Connection
+                        အဖြစ် အသုံးပြုသည်။
+                    </td>
+</tr>
+<tr>
+<td>
+                        ONT / ONU
+                    </td>
+<td>
+                        Customer ဘက်တွင်
+                        Optical Signal နှင့်
+                        User Data များကို
+                        လက်ခံ/ပို့ဆောင်ပေးသည်။
+                    </td>
+</tr>
+</tbody>
+</table>
+<!-- =================================================
+             OLT FUNCTIONS
+        ================================================= -->
+<h2>
+            OLT ၏ အဓိက Function များ
+        </h2>
+<p>
+            OLT သည် PON Network အတွင်းတွင်
+            Data Transmission တစ်ခုတည်းကိုသာ
+            ဆောင်ရွက်ပေးခြင်း မဟုတ်ဘဲ
+            Network Management နှင့်
+            Bandwidth Management ဆိုင်ရာ
+            လုပ်ဆောင်ချက်များလည်း ပါဝင်သည်။
+        </p>
+<ul>
+<li>
+                Core Network နှင့်
+                PON Network ကို
+                ချိတ်ဆက်ပေးခြင်း
+            </li>
+<li>
+                Downstream Data ကို
+                Customer များထံသို့
+                ပို့ပေးခြင်း
+            </li>
+<li>
+                Upstream Data များကို
+                Customer များထံမှ
+                လက်ခံခြင်း
+            </li>
+<li>
+                ONT/ONU များ၏
+                Network Access ကို
+                စီမံခန့်ခွဲခြင်း
+            </li>
+<li>
+                Bandwidth Allocation နှင့်
+                Traffic Management
+                လုပ်ဆောင်ခြင်း
+            </li>
+<li>
+                PON Interface များမှ
+                Optical Communication ကို
+                စီမံခန့်ခွဲခြင်း
+            </li>
+</ul>
+<!-- =================================================
+             DBA
+        ================================================= -->
+<h2>
+            DBA (Dynamic Bandwidth Allocation)
+        </h2>
+<p>
+
+            PON Network တစ်ခုတွင်
+            Customer များစွာသည်
+            တူညီသော PON Infrastructure ကို
+            မျှဝေသုံးစွဲကြသည်။
+
+            ထို့ကြောင့် Upstream ဘက်တွင်
+            ONT/ONU များက Data ပို့သည့်အချိန်ကို
+            စနစ်တကျ စီမံခန့်ခွဲရန်
+            Bandwidth Allocation Mechanism
+            လိုအပ်သည်။
+
+        </p>
+<p>
+
+            DBA (Dynamic Bandwidth Allocation)
+            သည် Network Traffic နှင့်
+            Service Requirements များအပေါ်မူတည်ပြီး
+            Bandwidth ကို Dynamic အနေဖြင့်
+            စီမံခန့်ခွဲပေးနိုင်သော
+            PON နည်းပညာ၏ အရေးကြီးသော
+            Mechanism တစ်ခု ဖြစ်သည်။
+
+        </p>
+<!-- =================================================
+             TECHNICAL SPECIFICATIONS
+        ================================================= -->
+<h2>
+            OLT နှင့် PON Technical Specifications
+        </h2>
+<p>
+
+            OLT အသုံးပြုသော
+            Wavelength နှင့်
+            Transmission Characteristics များသည်
+            အသုံးပြုသည့် PON Technology နှင့်
+            Standard ပေါ်မူတည်၍
+            ကွာခြားနိုင်သည်။
+
+        </p>
+<table class="tech-table">
+<thead>
+<tr>
+<th>
+                        PON Technology
+                    </th>
+<th>
+                        Downstream
+                    </th>
+<th>
+                        Upstream
+                    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+                        GPON
+                    </td>
+<td>
+                        ~1490 nm
+                    </td>
+<td>
+                        ~1310 nm
+                    </td>
+</tr>
+<tr>
+<td>
+                        XGS-PON
+                    </td>
+<td>
+                        ~1577 nm
+                    </td>
+<td>
+                        ~1270 nm
+                    </td>
+</tr>
+</tbody>
+</table>
+<div class="info-box">
+<strong>
+                ⚠️ အရေးကြီးသော Technical Note
+            </strong>
+<br/><br/>
+
+            အထက်ပါ Wavelength များသည်
+            သက်ဆိုင်ရာ PON Technology ၏
+            ပုံမှန်အသုံးပြုသည့် Wavelength Plan များကို
+            ဖော်ပြထားခြင်း ဖြစ်သည်။
+
+            PON Technology အားလုံးတွင်
+            Wavelength တူညီခြင်း မရှိပါ။
+
+            Standard၊ Equipment နှင့်
+            Network Design ပေါ်မူတည်ပြီး
+            Technical Specifications များ
+            ကွာခြားနိုင်သည်။
+
+        </div>
+<!-- =================================================
+             OLT PORTS
+        ================================================= -->
+<h2>
+            OLT Port များ
+        </h2>
+<p>
+
+            OLT တွင် Network အမျိုးအစားနှင့်
+            Equipment Model ပေါ်မူတည်ပြီး
+            Port အမျိုးအစားများ ကွာခြားနိုင်သည်။
+
+            အဓိကအားဖြင့်
+            PON Port များနှင့်
+            Uplink Port များကို
+            တွေ့ရလေ့ရှိသည်။
+
+        </p>
+<ul>
+<li>
+<strong>PON Port</strong>
+                —
+                PON Fiber Network ဘက်သို့
+                Optical Connection ပေးသည်။
+            </li>
+<li>
+<strong>Uplink Port</strong>
+                —
+                OLT ကို Core / Aggregation Network
+                ဘက်သို့ ချိတ်ဆက်ပေးသည်။
+            </li>
+<li>
+<strong>Management Interface</strong>
+                —
+                OLT Configuration နှင့်
+                Network Management အတွက်
+                အသုံးပြုနိုင်သည်။
+            </li>
+</ul>
+<!-- =================================================
+             PRACTICAL EXAMPLE
+        ================================================= -->
+<h2>
+            လက်တွေ့ FTTH Network ဥပမာ
+        </h2>
+<p>
+
+            ဥပမာအားဖြင့်
+            Internet Service Provider တစ်ခုသည်
+            Residential Area တစ်ခုအတွင်း
+            FTTH Internet Service ပေးနေသည်ဟု
+            ယူဆကြပါစို့။
+
+        </p>
+<p>
+
+            Core Network မှ Data သည်
+            OLT သို့ ရောက်ရှိလာပြီး
+            OLT မှ PON Network သို့
+            Optical Signal အဖြစ်
+            ပို့ပေးသည်။
+
+            ထို့နောက် Feeder Fiber ကို
+            ဖြတ်သန်းပြီး
+            Optical Splitter သို့ ရောက်ရှိသည်။
+
+        </p>
+<p>
+
+            Splitter မှ Signal ကို
+            Customer များစွာထံသို့
+            ခွဲဝေပေးပြီး
+            Distribution Fiber နှင့်
+            Drop Fiber များမှတစ်ဆင့်
+            Customer အိမ်ရှိ
+            ONT/ONU သို့ ရောက်ရှိသည်။
+
+        </p>
+<!-- =================================================
+             QUICK SUMMARY
+        ================================================= -->
+<h2>
+            Quick Summary
+        </h2>
+<p>
+
+            OLT သည် FTTH နှင့်
+            PON Network များတွင်
+            အလွန်အရေးကြီးသော
+            ဗဟို Network Device ဖြစ်သည်။
+
+            Service Provider ၏
+            Core Network နှင့်
+            Customer ONT/ONU များကြားတွင်
+            Data Communication ကို
+            စီမံပေးသည်။
+
+        </p>
+<ul>
+<li>
+                OLT = Optical Line Terminal
+            </li>
+<li>
+                OLT သည် PON Network ၏
+                အဓိက ဗဟို Device ဖြစ်သည်။
+            </li>
+<li>
+                Downstream သည်
+                OLT → Customer ဘက်သို့
+                Data စီးဆင်းခြင်း ဖြစ်သည်။
+            </li>
+<li>
+                Upstream သည်
+                Customer → OLT ဘက်သို့
+                Data စီးဆင်းခြင်း ဖြစ်သည်။
+            </li>
+<li>
+                Splitter သည်
+                Optical Signal ကို
+                Customer များစွာထံ
+                ခွဲဝေပေးသည်။
+            </li>
+<li>
+                OLT သည်
+                Bandwidth Management နှင့်
+                Network Control များတွင်
+                အရေးပါသော အခန်းကဏ္ဍမှ
+                ပါဝင်သည်။
+            </li>
+</ul>
+<!-- NEXT STEP -->
+<div class="info-box">
+<strong>
+                🎯 နောက်တစ်ဆင့်
+            </strong>
+<br/><br/>
+
+            OLT ကို နားလည်ပြီးပါက
+            FTTH Network အတွင်းရှိ
+            <strong>
+                ONU နှင့် ONT
+            </strong>
+            တို့၏ ကွာခြားချက်များကို
+            ဆက်လက်လေ့လာနိုင်ပါသည်။
+
+        </div>
+</article>
+<!-- =====================================================
+         RELATED ARTICLES
+    ===================================================== -->
+<section class="related">
+<h2>
+            ဆက်လက်လေ့လာရန်
+        </h2>
+<div class="related-grid">
+<!-- RELATED 1 -->
+<a class="related-card" href="what-is-ftth.html">
+<span class="related-icon">
+                    🌐
+                </span>
+<h3>
+                    What is FTTH?
+                </h3>
+<p>
+                    FTTH Network ဆိုတာဘာလဲနှင့်
+                    Fiber ကို Customer အိမ်အထိ
+                    ဘယ်လိုအသုံးပြုသလဲ လေ့လာပါ။
+                </p>
+<span class="read-more">
+                    ဆောင်းပါးဖတ်ရန် →
+                </span>
+</a>
+<!-- RELATED 2 -->
+<a class="related-card" href="what-is-optical-splitter.html">
+<span class="related-icon">
+                    🔀
+                </span>
+<h3>
+                    Optical Splitter
+                </h3>
+<p>
+                    PON Network ထဲမှာ
+                    Optical Splitter က
+                    Signal ကို ဘယ်လိုခွဲဝေသလဲ လေ့လာပါ။
+                </p>
+<span class="read-more">
+                    ဆောင်းပါးဖတ်ရန် →
+                </span>
+</a>
+<!-- RELATED 3 -->
+<a class="related-card" href="onu-vs-ont.html">
+<span class="related-icon">
+                    📡
+                </span>
+<h3>
+                    ONU vs ONT
+                </h3>
+<p>
+                    ONU နှင့် ONT တို့၏
+                    အဓိကကွာခြားချက်များကို
+                    လေ့လာပါ။
+                </p>
+<span class="read-more">
+                    ဆောင်းပါးဖတ်ရန် →
+                </span>
+</a>
+</div>
+</section>
+<!-- =====================================================
+         ARTICLE NAVIGATION
+         PREVIOUS / NEXT ONLY
+    ===================================================== -->
+<div class="article-nav">
+<a class="nav-btn" href="what-is-ftth.html">
+            ← Previous Article
+        </a>
+<a class="nav-btn" href="onu-vs-ont.html">
+            Next Article →
+        </a>
+</div>
+</main>
+<!-- Social Share Section with Logos -->
+<div class="social-share-container">
+<span>📌 ဤဆောင်းပါးကို သူငယ်ချင်းများထံ မျှဝေရန်:</span>
+<div class="share-buttons-group">
+<!-- Facebook Button with SVG Logo -->
+<a class="share-btn fb" href="#" id="shareFacebook" target="_blank">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+</svg>
+<span>Facebook</span>
+</a>
+<!-- Telegram Button with SVG Logo -->
+<a class="share-btn tg" href="#" id="shareTelegram" target="_blank">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+<path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.622-.168.9-.5 1.201-.82 1.23-.697.064-1.228-.46-1.903-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.098.153.228.166.331.011.093.024.304.007.469z"></path>
+</svg>
+<span>Telegram</span>
+</a>
+</div>
+</div>
+<!-- =========================
+     COMMENT SECTION (GISCUS)
+========================= -->
+<section class="section" id="comments">
+<div class="section-heading">
+<span class="section-label">COMMUNITY</span>
+<h2>Comments &amp; Discussions</h2>
+<p>ဆောင်းပါးနှင့် ပတ်သက်သည့် မေးခွန်းများနှင့် မှတ်ချက်များကို အောက်တွင် မေးမြန်းနိုင်ပါသည်။</p>
+</div>
+<div style="max-width: 800px; margin: 0 auto; padding: 0 1rem;">
+<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOUHVahs4DElz6" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-mapping="pathname" data-reactions-enabled="1" data-repo="fiberoptichub/fiberoptichub.github.io" data-repo-id="R_kgDOUHVahg" data-strict="0" data-theme="dark_dimmed" src="https://giscus.app/client.js">
+</script>
+</div>
+</section>
+<!-- =========================
+     FOOTER
+========================= -->
+<script src="../js/index.js"></script>
+
+
+<footer>
+<div class="logo" style="font-size: 1.1rem; margin-bottom: 8px;">🌐 Fiber <span>Optic Hub</span></div>
+<p>© 2026 Fiber Optic Hub. All rights reserved.</p>
+<p style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Learn • Practice • Share</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt; lang="my"&gt;
+
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="FTTH Basics - Fiber To The Home အခြေခံနည်းပညာကို လေ့လာနိုင်ရန် ရှင်းလင်းထားသော Article" name="description"/>
+<meta content="FTTH, Fiber To The Home, OLT, ONU, ONT, Optical Splitter, GPON, Fiber Optic" name="keywords"/>
+<meta content="Fiber Optic Hub" name="author"/>
+<meta content="index, follow" name="robots"/>
+<!-- =========================
+         ARTICLE BUILDER META
+    ========================= -->
+<meta content="FTTH Basics" name="article-title"/>
+<meta content="2026-08-26T09:00:00+07:00" name="article-date"/>
+<meta content="FTTH" name="article-category"/>
+<meta content="Beginner" name="article-level"/>
+<meta content="FTTH (Fiber To The Home) ဆိုတာဘာလဲ၊ OLT၊ Optical Splitter၊ Feeder Fiber၊ Distribution Fiber၊ Drop Fiber နဲ့ ONT/ONU တို့ ဘယ်လိုအလုပ်လုပ်သလဲကို Beginner များအတွက် လေ့လာနိုင်ပါတယ်။" name="article-description"/>
+<!-- =========================
+         GOOGLE ANALYTICS
+    ========================= -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1MTHL3RRGV"></script>
+<script>
+
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-1MTHL3RRGV');
+
+    </script>
+<!-- =========================
+         PAGE TITLE
+    ========================= -->
+<title>
+        FTTH Basics | Fiber Optic Hub
+    </title>
+<!-- =========================
+         STYLESHEET
+    ========================= -->
+<link href="../css/index.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<header>
+<div class="logo">🌐 Fiber <span>Optic Hub</span></div>
+<nav class="main-nav">
+<a href="../index.html">Home</a>
+<a href="../index.html#topics">Learn</a>
+<a href="../index.html#articles">Articles</a>
+<a href="../index.html#about">About</a>
+</nav>
+<button aria-expanded="false" aria-label="Open menu" class="menu" onclick="toggleMenu()" type="button">☰</button>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+<a href="../index.html" onclick="closeMenu()">🏠 Home</a>
+<a href="../index.html#topics" onclick="closeMenu()">📚 Learn</a>
+<a href="../index.html#articles" onclick="closeMenu()">📰 Articles</a>
+<a href="../index.html#about" onclick="closeMenu()">ℹ️ About</a>
+</div>
+
+
+
+<!-- =========================
+     HEADER
+========================= --><!-- =========================
+     MAIN ARTICLE
+========================= -->
+<main class="article-page"><a class="back-btn" href="../index.html">
+    ← Back to Home
+</a>
+<h1 class="article-page-title">
+    FTTH Basics
+</h1>
+<p class="article-meta">FTTH • Beginner • ⏱️ 3 min read<br/>Published: 2026-08-26</p>
+<!-- =========================
+     ARTICLE CONTENT
+========================== -->
+<article class="article-content">
+<!-- INTRO -->
+<h2>
+        FTTH ဆိုတာဘာလဲ?
+    </h2>
+<figure class="article-figure">
+<img alt="FTTH Network Diagram showing OLT, Feeder Fiber, Optical Splitter, Distribution Fiber, Drop Fiber and ONT or ONU" class="article-image" loading="lazy" src="../images/ftth-network-diagram.png"/>
+<figcaption>
+        FTTH Network: OLT → Feeder Fiber → Splitter → Distribution Fiber → Drop Fiber → ONT/ONU
+    </figcaption>
+</figure>
+<p>
+<strong>
+            FTTH (Fiber To The Home - အိမ်အထိ Fiber ရောက်အောင် တပ်ဆင်ပေးတဲ့ Network)
+        </strong>
+
+        ဆိုတာ Internet Service Provider (ISP - Internet ဝန်ဆောင်မှုပေးသူ)
+        ကနေ User ရဲ့အိမ်အထိ
+
+        <strong>
+            Optical Fiber (အလင်းဖြင့် Data ပို့ဆောင်တဲ့ Fiber)
+        </strong>
+
+        ကို အသုံးပြုပြီး Internet Service ပေးတဲ့
+
+        <strong>
+            Access Network Technology
+        </strong>
+
+        တစ်ခု ဖြစ်ပါတယ်။
+
+    </p>
+<p>
+
+        ရိုးရိုးရှင်းရှင်းပြောရရင်
+
+        <br/><br/>
+<strong>
+            ISP → Fiber Network → User Home
+        </strong>
+<br/><br/>
+
+        ဆိုတဲ့ လမ်းကြောင်းအတိုင်း
+        Internet Data ကို Fiber ကနေတစ်ဆင့်
+        အိမ်အထိ ပို့ပေးတာကို FTTH လို့ခေါ်ပါတယ်။
+
+    </p>
+<div class="info-box">
+<strong>
+            💡 အလွယ်ဆုံးမှတ်ရန်
+        </strong>
+<br/><br/>
+
+        FTTH = Fiber To The Home
+
+        <br/><br/>
+
+        ISP ကနေ User အိမ်အထိ
+        Optical Fiber နဲ့ Internet ပို့ပေးခြင်း ဖြစ်ပါတယ်။
+
+    </div>
+<!-- HOW FTTH WORKS -->
+<h2>
+        FTTH ဘယ်လိုအလုပ်လုပ်သလဲ?
+    </h2>
+<p>
+
+        FTTH Network မှာ Internet Data က
+        Internet Service Provider (ISP) ဘက်ကနေ စတင်ပြီး
+
+        <strong>
+            OLT (Optical Line Terminal)
+        </strong>
+
+        ဆီကို ရောက်လာပါတယ်။
+
+    </p>
+<p>
+
+        OLT ကနေ Optical Fiber မှတစ်ဆင့်
+        Data ကို User တွေဆီ ပို့ပေးပါတယ်။
+
+        Network အတွင်းမှာ
+
+        <strong>
+            Optical Splitter
+        </strong>
+
+        ကို အသုံးပြုပြီး
+        Fiber တစ်ချောင်းကနေ User အများအပြားကို
+        Service ပေးနိုင်ပါတယ်။
+
+    </p>
+<p>
+
+        User ရဲ့အိမ်ကို ရောက်တဲ့အခါ
+
+        <strong>
+            ONT / ONU
+        </strong>
+
+        က Optical Signal ကို လက်ခံပြီး
+        Router နဲ့ အခြား Network Devices တွေ အသုံးပြုနိုင်အောင်
+        ပြောင်းပေးပါတယ်။
+
+    </p>
+<!-- BASIC FLOW -->
+<h2>
+        FTTH Network Basic Flow
+    </h2>
+<div class="info-box">
+<strong>
+
+            OLT
+            →
+            Feeder Fiber
+            →
+            Optical Splitter
+            →
+            Distribution Fiber
+            →
+            Drop Fiber
+            →
+            ONT / ONU
+            →
+            Router
+
+        </strong>
+</div>
+<!-- OLT -->
+<h2>
+        1. OLT (Optical Line Terminal)
+    </h2>
+<p>
+<strong>
+            OLT
+        </strong>
+
+        က ISP ရဲ့ Central Office
+        မှာ တပ်ဆင်ထားလေ့ရှိတဲ့
+        အဓိက Optical Equipment ဖြစ်ပါတယ်။
+
+    </p>
+<p>
+
+        OLT က User တွေဆီ Data ပို့ပေးခြင်းနဲ့
+        User ဘက်ကနေ ပြန်လာတဲ့ Data ကို
+        လက်ခံခြင်းတို့ကို စီမံပေးပါတယ်။
+
+    </p>
+<div class="info-box">
+<strong>
+            📌 မှတ်ရန်
+        </strong>
+<br/><br/>
+
+        OLT = FTTH Network ရဲ့ အဓိက Equipment
+
+    </div>
+<!-- FEEDER -->
+<h2>
+        2. Feeder Fiber
+    </h2>
+<p>
+<strong>
+            Feeder Fiber
+        </strong>
+
+        က OLT ဘက်ကနေ
+        Splitter Area အထိ သွားတဲ့
+        Main Fiber ဖြစ်ပါတယ်။
+
+    </p>
+<!-- SPLITTER -->
+<h2>
+        3. Optical Splitter
+    </h2>
+<p>
+<strong>
+            Optical Splitter
+        </strong>
+
+        က Optical Signal ကို
+        လမ်းကြောင်းများစွာ ခွဲပေးတဲ့
+        Passive Device ဖြစ်ပါတယ်။
+
+    </p>
+<p>
+
+        ဥပမာ
+
+        <br/><br/>
+<strong>
+            1:8 Splitter
+        </strong>
+        → Output 8 လမ်း
+
+        <br/>
+<strong>
+            1:16 Splitter
+        </strong>
+        → Output 16 လမ်း
+
+        <br/>
+<strong>
+            1:32 Splitter
+        </strong>
+        → Output 32 လမ်း
+
+        <br/>
+<strong>
+            1:64 Splitter
+        </strong>
+        → Output 64 လမ်း
+
+    </p>
+<p>
+
+        Splitter က
+
+        <strong>
+            Passive Device
+        </strong>
+
+        ဖြစ်ပြီး
+        ပုံမှန်အားဖြင့် Electrical Power
+        မလိုအပ်ဘဲ Optical Signal ကို
+        ခွဲဝေပေးနိုင်ပါတယ်။
+
+    </p>
+<!-- DISTRIBUTION -->
+<h2>
+        4. Distribution Fiber
+    </h2>
+<p>
+<strong>
+            Distribution Fiber
+        </strong>
+
+        က Splitter မှ ခွဲထွက်လာတဲ့
+        Optical Signal ကို
+        User တွေရှိတဲ့ Area ဆီ
+        ပို့ပေးတဲ့ Fiber ဖြစ်ပါတယ်။
+
+    </p>
+<!-- DROP -->
+<h2>
+        5. Drop Fiber
+    </h2>
+<p>
+<strong>
+            Drop Fiber
+        </strong>
+
+        က Distribution Point ကနေ
+        User အိမ်အထိ ချိတ်ဆက်ပေးတဲ့
+        နောက်ဆုံးပိုင်း Fiber ဖြစ်ပါတယ်။
+
+    </p>
+<p>
+
+        ဒီ Fiber က User ရဲ့
+        Home၊ Apartment ဒါမှမဟုတ် Office အထိ
+        ရောက်အောင် တပ်ဆင်ပေးပါတယ်။
+
+    </p>
+<!-- ONT / ONU -->
+<h2>
+        6. ONT / ONU
+    </h2>
+<p>
+<strong>
+            ONT (Optical Network Terminal)
+        </strong>
+
+        နဲ့
+
+        <strong>
+            ONU (Optical Network Unit)
+        </strong>
+
+        တို့က User ဘက်မှာ
+        Optical Signal ကို လက်ခံပြီး
+        Network Devices တွေ အသုံးပြုနိုင်အောင်
+        ပြောင်းပေးတဲ့ Equipment တွေ ဖြစ်ပါတယ်။
+
+    </p>
+<p>
+
+        ONT / ONU ကနေ Ethernet Port ကို အသုံးပြုပြီး
+        Router၊ Computer နဲ့ အခြား Network Devices တွေကို
+        ချိတ်ဆက်နိုင်ပါတယ်။
+
+    </p>
+<!-- SPLITTER PURPOSE -->
+<h2>
+        FTTH မှာ Splitter ဘာကြောင့်သုံးတာလဲ?
+    </h2>
+<p>
+
+        Optical Splitter ကို အသုံးပြုခြင်းအားဖြင့်
+        Fiber တစ်ချောင်းရဲ့ Optical Signal ကို
+        User အများအပြားအတွက်
+        ခွဲဝေပေးနိုင်ပါတယ်။
+
+    </p>
+<div class="info-box">
+<strong>
+
+            OLT
+            →
+            1:32 Splitter
+            →
+            32 Users
+
+        </strong>
+<br/><br/>
+
+        ဒီလို Network Design လုပ်နိုင်ပါတယ်။
+
+    </div>
+<!-- GPON -->
+<h2>
+        GPON ဆိုတာဘာလဲ?
+    </h2>
+<p>
+<strong>
+            GPON (Gigabit Passive Optical Network)
+        </strong>
+
+        ကို FTTH Network တွေမှာ
+        အသုံးများပါတယ်။
+
+    </p>
+<p>
+
+        GPON မှာ
+
+        <strong>
+            OLT
+        </strong>
+
+        ၊
+
+        <strong>
+            Optical Splitter
+        </strong>
+
+        နဲ့
+
+        <strong>
+            ONT / ONU
+        </strong>
+
+        တို့ကို အဓိကအသုံးပြုပြီး
+        User အများအပြားကို
+        Fiber Network တစ်ခုတည်းကနေ
+        Service ပေးနိုင်ပါတယ်။
+
+    </p>
+<div class="info-box">
+<strong>
+
+            GPON
+            =
+            OLT + Passive Splitter + ONT / ONU
+
+        </strong>
+</div>
+<!-- ADVANTAGES -->
+<h2>
+        FTTH ရဲ့ အားသာချက်များ
+    </h2>
+<ul>
+<li>
+<strong>
+                High Speed
+            </strong>
+</li>
+<li>
+<strong>
+                High Bandwidth
+            </strong>
+</li>
+<li>
+<strong>
+                Long Distance
+            </strong>
+</li>
+<li>
+<strong>
+                Low Attenuation
+            </strong>
+</li>
+<li>
+<strong>
+                EMI Immunity
+            </strong>
+</li>
+<li>
+<strong>
+                Scalable Network
+            </strong>
+</li>
+</ul>
+<!-- TERMS -->
+<h2>
+        Beginner အတွက် သိထားသင့်တဲ့ Technical Terms
+    </h2>
+<table class="tech-table">
+<thead>
+<tr>
+<th>
+                    Technical Term
+                </th>
+<th>
+                    အဓိပ္ပါယ်
+                </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+                    OLT
+                </td>
+<td>
+                    FTTH Network ရဲ့ အဓိက Optical Equipment
+                </td>
+</tr>
+<tr>
+<td>
+                    ONT / ONU
+                </td>
+<td>
+                    User ဘက်က Optical Equipment
+                </td>
+</tr>
+<tr>
+<td>
+                    Optical Splitter
+                </td>
+<td>
+                    Optical Signal ကို ခွဲပေးတဲ့ Passive Device
+                </td>
+</tr>
+<tr>
+<td>
+                    Feeder Fiber
+                </td>
+<td>
+                    OLT ကနေ Splitter Area အထိ သွားတဲ့ Main Fiber
+                </td>
+</tr>
+<tr>
+<td>
+                    Distribution Fiber
+                </td>
+<td>
+                    Splitter ကနေ User Area အထိ ဖြန့်တဲ့ Fiber
+                </td>
+</tr>
+<tr>
+<td>
+                    Drop Fiber
+                </td>
+<td>
+                    User အိမ်အထိ ချိတ်ဆက်ပေးတဲ့ Fiber
+                </td>
+</tr>
+<tr>
+<td>
+                    ODN
+                </td>
+<td>
+                    OLT နဲ့ ONT ကြားက Optical Distribution Network
+                </td>
+</tr>
+<tr>
+<td>
+                    GPON
+                </td>
+<td>
+                    Gigabit Passive Optical Network
+                </td>
+</tr>
+<tr>
+<td>
+                    Optical Power
+                </td>
+<td>
+                    Optical Signal ရဲ့ Power
+                </td>
+</tr>
+</tbody>
+</table>
+<!-- IMPORTANT -->
+<div class="info-box">
+<strong>
+            📌 အရေးကြီးတာ မှတ်ထားပါ
+        </strong>
+<br/><br/>
+
+        FTTH ကို စလေ့လာတဲ့အခါ
+        ဒီ Basic Flow ကို အရင်ဆုံး မှတ်ထားပါ။
+
+        <br/><br/>
+<strong>
+
+            OLT
+            →
+            Feeder Fiber
+            →
+            Splitter
+            →
+            Distribution Fiber
+            →
+            Drop Fiber
+            →
+            ONT / ONU
+            →
+            Router
+
+        </strong>
+</div>
+<!-- SUMMARY -->
+<h2>
+        Quick Summary
+    </h2>
+<p>
+<strong>
+            FTTH (Fiber To The Home)
+        </strong>
+
+        ဆိုတာ Internet Service ကို
+        Optical Fiber အသုံးပြုပြီး
+        User ရဲ့အိမ်အထိ ပို့ပေးတဲ့
+        Access Network Technology ဖြစ်ပါတယ်။
+
+    </p>
+<p>
+
+        FTTH Network ရဲ့ အခြေခံ Component တွေက
+
+        <strong>
+            OLT၊ Optical Splitter၊ Fiber နဲ့ ONT/ONU
+        </strong>
+
+        တို့ ဖြစ်ပါတယ်။
+
+    </p>
+<p>
+
+        FTTH ရဲ့ အဓိကအားသာချက်တွေက
+
+        <strong>
+            High Speed၊ High Bandwidth၊
+            Low Attenuation
+        </strong>
+
+        နဲ့
+
+        <strong>
+            Long Distance Transmission
+        </strong>
+
+        ဖြစ်ပါတယ်။
+
+    </p>
+</article>
+<!-- =========================
+     RELATED ARTICLES
+========================= --><section class="related"><h2>
+    ဆက်လက်လေ့လာရန်
+</h2>
+<p class="related-intro">
+    FTTH Basics ကို နားလည်ပြီးနောက်
+    အောက်ပါ Fiber Optic အကြောင်းအရာများကို
+    ဆက်လက်လေ့လာနိုင်ပါတယ်။
+</p>
+<div class="related-grid">
+<!-- Fiber Optic -->
+<a class="related-card" href="what-is-fiber-optic.html">
+<span class="related-icon">
+            📚
+        </span>
+<h3>
+            What is Fiber Optic?
+        </h3>
+<p>
+            Fiber Optic ရဲ့ အခြေခံ၊
+            Core၊ Cladding နဲ့ Coating
+            တို့ကို လေ့လာပါ။
+        </p>
+<span class="read-more">
+            ဆောင်းပါးဖတ်ရန် →
+        </span>
+</a>
+<!-- Single Mode vs Multimode -->
+<a class="related-card" href="single-mode-vs-multimode.html">
+<span class="related-icon">
+            🔎
+        </span>
+<h3>
+            Single Mode vs Multimode
+        </h3>
+<p>
+            Single Mode နဲ့ Multimode Fiber
+            တို့ရဲ့ ကွာခြားချက်တွေကို လေ့လာပါ။
+        </p>
+<span class="read-more">
+            ဆောင်းပါးဖတ်ရန် →
+        </span>
+</a>
+<!-- OTDR -->
+<a class="related-card" href="what-is-otdr.html">
+<span class="related-icon">
+            🔬
+        </span>
+<h3>
+            What is OTDR?
+        </h3>
+<p>
+            OTDR အသုံးပြုပြီး Fiber Link ကို
+            ဘယ်လိုစမ်းသပ်ရမလဲ လေ့လာပါ။
+        </p>
+<span class="read-more">
+            ဆောင်းပါးဖတ်ရန် →
+        </span>
+</a>
+<!-- Fusion Splicing -->
+<a class="related-card" href="what-is-fusion-splicing.html">
+<span class="related-icon">
+            🔧
+        </span>
+<h3>
+            What is Fusion Splicing?
+        </h3>
+<p>
+            Fiber နှစ်ချောင်းကို
+            Fusion Splicing ပြုလုပ်ပုံကို
+            လေ့လာပါ။
+        </p>
+<span class="read-more">
+            ဆောင်းပါးဖတ်ရန် →
+        </span>
+</a>
+</div>
+</section><!-- =========================
+     ARTICLE NAVIGATION
+========================= --><div class="article-nav"><a class="nav-btn" href="single-mode-vs-multimode.html">
+    ← Previous Article
+</a>
+<a class="nav-btn" href="what-is-fusion-splicing.html">
+    Next Article →
+</a>
+</div>
+</main>
+<!-- Social Share Section with Logos -->
+<div class="social-share-container">
+<span>📌 ဤဆောင်းပါးကို သူငယ်ချင်းများထံ မျှဝေရန်:</span>
+<div class="share-buttons-group">
+<!-- Facebook Button with SVG Logo -->
+<a class="share-btn fb" href="#" id="shareFacebook" target="_blank">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+</svg>
+<span>Facebook</span>
+</a>
+<!-- Telegram Button with SVG Logo -->
+<a class="share-btn tg" href="#" id="shareTelegram" target="_blank">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18">
+<path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.622-.168.9-.5 1.201-.82 1.23-.697.064-1.228-.46-1.903-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.098.153.228.166.331.011.093.024.304.007.469z"></path>
+</svg>
+<span>Telegram</span>
+</a>
+</div>
+</div>
+<!-- =========================
+     COMMENT SECTION (GISCUS)
+========================= -->
+<section class="section" id="comments">
+<div class="section-heading">
+<span class="section-label">COMMUNITY</span>
+<h2>Comments &amp; Discussions</h2>
+<p>ဆောင်းပါးနှင့် ပတ်သက်သည့် မေးခွန်းများနှင့် မှတ်ချက်များကို အောက်တွင် မေးမြန်းနိုင်ပါသည်။</p>
+</div>
+<div style="max-width: 800px; margin: 0 auto; padding: 0 1rem;">
+<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOUHVahs4DElz6" data-emit-metadata="0" data-input-position="bottom" data-lang="en" data-mapping="pathname" data-reactions-enabled="1" data-repo="fiberoptichub/fiberoptichub.github.io" data-repo-id="R_kgDOUHVahg" data-strict="0" data-theme="dark_dimmed" src="https://giscus.app/client.js">
+</script>
+</div>
+</section>
+<!-- =========================
+     FOOTER
+========================= -->
+<script src="../js/index.js"></script>
+
+
+<footer>
+<div class="logo" style="font-size: 1.1rem; margin-bottom: 8px;">🌐 Fiber <span>Optic Hub</span></div>
+<p>© 2026 Fiber Optic Hub. All rights reserved.</p>
+<p style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Learn • Practice • Share</p>
+</footer>
+</body>

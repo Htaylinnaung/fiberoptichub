@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://fiberoptichub.github.io/</loc>
+    </url>
+
+
+    <!-- Articles -->
+
+    <url>
+        <loc>https://fiberoptichub.github.io/articles/what-is-fiber-optic.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fiberoptichub.github.io/articles/single-mode-vs-multimode.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fiberoptichub.github.io/articles/what-is-ftth.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fiberoptichub.github.io/articles/what-is-otdr.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fiberoptichub.github.io/articles/what-is-fusion-splicing.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fiberoptichub.github.io/articles/fiber-loss.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fiberoptichub.github.io/articles/attenuation.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fiberoptichub.github.io/articles/mode-field-diameter.html</loc>
+    </url>
+
+    <url>
+        <loc>https://fiberoptichub.github.io/articles/fiber-troubleshooting.html</loc>
+    </url>
+
+</urlset>
