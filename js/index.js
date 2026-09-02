@@ -3,6 +3,7 @@
    - Mobile Menu Navigation
    - Asynchronous JSON Index Fetching
    - Multi-folder Relative Path Handling
+   - Home Page & Category Pages Dynamic Rendering
 ===================================================== */
 
 // 1. MOBILE MENU TOGGLE
@@ -43,8 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const isSubFolder = currentPath.includes("/articles/") || currentPath.includes("/categories/");
     const jsonPath = isSubFolder ? "../data/articles.json" : "data/articles.json";
 
-    // Fetch Articles JSON Data dynamically
-    fetch(jsonPath)
+    // Fetch Articles JSON Data dynamically (Cache Busting)
+    fetch(`${jsonPath}?v=${new Date().getTime()}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("Failed to load articles index");
@@ -74,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Filter search index (articles.json ၏ Key အမည်များနှင့် ကိုက်ညီအောင် ပြင်ဆင်ထားသည်)
+        // Filter search index
         const results = articlesIndex.filter(article => {
             return (
                 (article.title && article.title.toLowerCase().includes(query)) ||
@@ -142,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function() {
 // HOME PAGE & ALL ARTICLES DYNAMIC RENDER
 // =====================================================
 document.addEventListener("DOMContentLoaded", function () {
-    // index.html အတွက် latestArticles သို့မဟုတ် အခြား Page များအတွက် auto-article-list ကို ရှာမည်
     const articleContainer = document.getElementById("latestArticles") || document.getElementById("auto-article-list");
     const paginationContainer = document.getElementById("articlePagination");
 
@@ -157,15 +157,19 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(articles => {
             if (!articles || articles.length === 0) return;
 
-            // ရက်စွဲအလိုက် နောက်ဆုံးထည့်ထားသော ဆောင်းပါးများကို အပေါ်ဆုံးတင်ရန်
-            articles.reverse();
+            // ရက်စွဲအလိုက် စစ်ဆေးပြီး အသစ်ဆုံး ဆောင်းပါးကို အပေါ်ဆုံး စီစဉ်ခြင်း
+            articles.sort((a, b) => {
+                const dateA = new Date(a.date || 0);
+                const dateB = new Date(b.date || 0);
+                return dateB - dateA;
+            });
 
             const urlPrefix = isSubFolder ? "../" : "";
 
-            // အကယ်၍ Home Page (latestArticles) ဖြစ်ပါက နောက်ဆုံး ၃ ခုကိုပဲ ပြမည်
+            // ၁။ Home Page (latestArticles) ဖြစ်ပါက နောက်ဆုံး ၃ ခုကို ပြမည်
             if (articleContainer.id === "latestArticles") {
                 const latestThree = articles.slice(0, 3);
-                articleContainer.innerHTML = ""; // Static Marker/Cards များကို ရှင်းထုတ်မည်
+                articleContainer.innerHTML = "";
 
                 latestThree.forEach((item, index) => {
                     const articleNum = String(index + 1).padStart(2, '0');
@@ -185,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     articleContainer.appendChild(card);
                 });
             } 
-            // အကယ်၍ All Articles Page ဖြစ်ပါက Pagination ဖြင့် အကုန်ပြမည်
+            // ၂။ Pagination ပါရှိသော All Articles Page ဖြစ်ပါက
             else if (paginationContainer) {
                 const itemsPerPage = 6;
                 const totalPages = Math.ceil(articles.length / itemsPerPage);
@@ -247,6 +251,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 showPage(1);
+            }
+            // ၃။ Pagination မပါဘဲ auto-article-list တစ်ခုတည်း ရှိနေပါက အားလုံးကို အသစ်မှ အဟောင်း စီပြမည်
+            else {
+                articleContainer.innerHTML = "";
+                articles.forEach(item => {
+                    const card = document.createElement("a");
+                    card.className = "related-card";
+                    card.href = `${urlPrefix}${item.url}`;
+                    card.innerHTML = `
+                        <div class="card-content">
+                            <span class="category-tag">${item.category || 'General'}</span>
+                            <h3>${item.title}</h3>
+                            <p>${item.description || ''}</p>
+                            <div class="card-meta">
+                                <span>📊 ${item.level || 'Beginner'}</span>
+                                <span>⏱️ ${item.readingTime || ''}</span>
+                            </div>
+                        </div>
+                    `;
+                    articleContainer.appendChild(card);
+                });
             }
         })
         .catch(err => console.error("Error loading articles:", err));
