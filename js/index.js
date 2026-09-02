@@ -74,13 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Filter search index
+        // Filter search index (articles.json ၏ Key အမည်များနှင့် ကိုက်ညီအောင် ပြင်ဆင်ထားသည်)
         const results = articlesIndex.filter(article => {
             return (
-                article.title.toLowerCase().includes(query) ||
-                article.category.toLowerCase().includes(query) ||
-                article.desc.toLowerCase().includes(query) ||
-                article.keywords.toLowerCase().includes(query)
+                (article.title && article.title.toLowerCase().includes(query)) ||
+                (article.category && article.category.toLowerCase().includes(query)) ||
+                (article.description && article.description.toLowerCase().includes(query))
             );
         });
 
@@ -115,7 +114,7 @@ function renderSearchResults(results, query, dropdown, isSubFolder) {
                 <div class="search-result-content">
                     <h3>${item.title}</h3>
                     <div class="search-result-meta">🏷️ ${item.category} • 📊 ${item.level}</div>
-                    <p>${item.desc}</p>
+                    <p>${item.description || ''}</p>
                 </div>
             </a>
         `;
@@ -125,7 +124,7 @@ function renderSearchResults(results, query, dropdown, isSubFolder) {
     dropdown.style.display = "block";
 }
 
-
+// 4. SOCIAL SHARE LINKS
 document.addEventListener("DOMContentLoaded", function() {
     const currentUrl = encodeURIComponent(window.location.href);
     const fbBtn = document.getElementById("shareFacebook");
