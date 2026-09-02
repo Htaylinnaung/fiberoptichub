@@ -498,6 +498,13 @@ a.nav-btn:hover {
     box-shadow: 0 4px 15px rgba(41, 182, 246, 0.3);
 }
 
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
 /* =========================
    PAGINATION
 ========================= */

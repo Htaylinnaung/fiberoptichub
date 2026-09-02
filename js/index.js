@@ -137,3 +137,82 @@ document.addEventListener("DOMContentLoaded", function() {
         tgBtn.href = `https://t.me/share/url?url=${currentUrl}`;
     }
 });
+
+// =====================================================
+// ALL ARTICLES PAGE PAGINATION
+// =====================================================
+document.addEventListener("DOMContentLoaded", function () {
+    const articleList = document.getElementById("auto-article-list");
+    const paginationContainer = document.getElementById("articlePagination");
+
+    if (!articleList || !paginationContainer) return;
+
+    // Static အနေဖြင့် ပါလာသော Card များကို ယူမည်
+    const cards = Array.from(articleList.getElementsByClassName("related-card"));
+    const itemsPerPage = 6; // တမျက်နှာလျှင် ပြသမည့် အရေအတွက်
+    const totalPages = Math.ceil(cards.length / itemsPerPage);
+    let currentPage = 1;
+
+    if (cards.length <= itemsPerPage) return;
+
+    function showPage(page) {
+        currentPage = page;
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        cards.forEach((card, index) => {
+            if (index >= start && index < end) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        renderPaginationUI();
+    }
+
+    function renderPaginationUI() {
+        paginationContainer.innerHTML = "";
+
+        // Prev Button
+        const prevBtn = document.createElement("button");
+        prevBtn.innerText = "« Prev";
+        prevBtn.className = "page-btn";
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.onclick = () => {
+            showPage(currentPage - 1);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+        paginationContainer.appendChild(prevBtn);
+
+        // Number Buttons
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.innerText = i;
+            btn.className = `page-btn ${i === currentPage ? "active" : ""}`;
+            btn.onclick = () => {
+                showPage(i);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+            paginationContainer.appendChild(btn);
+        }
+
+        // Next Button
+const nextBtn = document.createElement("button");
+nextBtn.innerText = "Next »";
+nextBtn.className = "page-btn";
+// currentPage နဲ့ totalPages တူနေရင် အလုပ်မလုပ်အောင် တိတိကျကျ စစ်မည်
+nextBtn.disabled = (currentPage >= totalPages); 
+nextBtn.onclick = () => {
+    if (currentPage < totalPages) {
+        showPage(currentPage + 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+};
+paginationContainer.appendChild(nextBtn);
+
+    }
+
+    // စတင်ချိန်တွင် Page 1 ကို ပြမည်
+    showPage(1);
+});
