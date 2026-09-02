@@ -23,7 +23,7 @@ def update_header_and_footer(filepath, is_article=True):
     if not body:
         return soup
 
-    # လမ်းကြောင်းအကွာအဝေးအလိုက် Link များကို ညှိရန် (articles/ က ../ သုံးရပြီး categories/ ကလည်း ../ သုံးရသည်)
+    # လမ်းကြောင်းအကွာအဝေးအလိုက် Link များကို ညှိရန်
     prefix = "../"
 
     # 1. Reading Progress Bar (Articles များအတွက်သာ)
@@ -35,7 +35,7 @@ def update_header_and_footer(filepath, is_article=True):
         '''
         body.insert(0, BeautifulSoup(progress_html, 'html.parser'))
 
-    # 2. Header ထည့်သွင်းခြင်း (သို့မဟုတ် Logo အဟောင်းကို 🌐 အိုင်ကွန်ဖြင့် အစားထိုးခြင်း)
+    # 2. Header ထည့်သွင်းခြင်း
     header_html = f'''
     <header>
         <div class="logo">🌐 Fiber <span>Optic Hub</span></div>
@@ -55,24 +55,23 @@ def update_header_and_footer(filepath, is_article=True):
     </div>
     '''
 
-    # Header ဟောင်း ရှိပြီးသားဆိုရင် ဖယ်ရှားမည်
+    # Header အဟောင်းနှင့် Mobile Menu အဟောင်း ဖယ်ရှားခြင်း
     existing_header = soup.find('header')
     if existing_header:
         existing_header.decompose()
     
-    # Mobile menu ဟောင်း ရှိပြီးသားဆိုရင်ပါ ဖယ်ရှားမည်
     existing_mobile_menu = soup.find(id='mobileMenu')
     if existing_mobile_menu:
         existing_mobile_menu.decompose()
 
-    # Header အသစ်ကို ထည့်သွင်းခြင်း
+    # Header အသစ် ထည့်သွင်းခြင်း
     progress_div = soup.find(class_='reading-progress-container')
     if progress_div:
         progress_div.insert_after(BeautifulSoup(header_html, 'html.parser'))
     else:
         body.insert(0, BeautifulSoup(header_html, 'html.parser'))
 
-        # 3. Footer ထည့်သွင်းခြင်း (🌐 အိုင်ကွန်အသစ်ဖြင့်)
+    # 3. Footer ထည့်သွင်းခြင်း
     existing_footer = soup.find('footer')
     if existing_footer:
         existing_footer.decompose()
@@ -86,7 +85,7 @@ def update_header_and_footer(filepath, is_article=True):
     '''
     body.append(BeautifulSoup(footer_html, 'html.parser'))
 
-    # 4. Script JS ထည့်သွင်းခြင်း (မရှိသေးမှသာ)
+    # 4. Script JS ထည့်သွင်းခြင်း
     if not soup.find('script', {'src': f'{prefix}js/index.js'}):
         script_html = f'<script src="{prefix}js/index.js"></script>'
         body.append(BeautifulSoup(script_html, 'html.parser'))
@@ -173,29 +172,18 @@ def build_articles():
 
             print(f"Successfully Built Article: {filename}")
 
-        # --- အပိုင်း ၂။ Categories ဖိုင်များကိုပါ အလိုအလျောက် Header Update လုပ်ခြင်း ---
+    # --- အပိုင်း ၂။ Categories ဖိုင်များကိုပါ အလိုအလျောက် Header Update လုပ်ခြင်း ---
     if os.path.exists(CATEGORIES_DIR):
         for cat_filename in os.listdir(CATEGORIES_DIR):
             if cat_filename.endswith('.html'):
                 cat_filepath = os.path.join(CATEGORIES_DIR, cat_filename)
                 
-                # Header Update လုပ်ခြင်း
                 soup = update_header_and_footer(cat_filepath, is_article=False)
                 
-                # ပြင်ဆင်ပြီးသား HTML ကို ဖိုင်ထဲသို့ ပြန်လည်ရေးသားခြင်း (ဒီနေရာလေး ကျန်နေခဲ့တာပါ)
                 with open(cat_filepath, 'w', encoding='utf-8') as f:
                     f.write(str(soup))
                 
                 print(f"Successfully Updated Category: {cat_filename}")
-
-    # articles.json ဖိုင်သို့ ထုတ်ပေးရန်
-    with open(JSON_OUTPUT, 'w', encoding='utf-8') as jf:
-        json.dump(articles_data, jf, ensure_ascii=False, indent=4)
-    
-    print(f"\nAll builds & category updates completed successfully!")
-
-if __name__ == '__main__':
-    build_articles()
 
     # articles.json ဖိုင်သို့ ထုတ်ပေးရန်
     with open(JSON_OUTPUT, 'w', encoding='utf-8') as jf:
