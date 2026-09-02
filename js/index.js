@@ -139,99 +139,115 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // =====================================================
-// ALL ARTICLES PAGE DYNAMIC RENDER & PAGINATION
+// HOME PAGE & ALL ARTICLES DYNAMIC RENDER
 // =====================================================
 document.addEventListener("DOMContentLoaded", function () {
-    const articleList = document.getElementById("auto-article-list");
+    // index.html အတွက် latestArticles သို့မဟုတ် အခြား Page များအတွက် auto-article-list ကို ရှာမည်
+    const articleContainer = document.getElementById("latestArticles") || document.getElementById("auto-article-list");
     const paginationContainer = document.getElementById("articlePagination");
 
-    if (!articleList || !paginationContainer) return;
+    if (!articleContainer) return;
 
     const currentPath = window.location.pathname;
     const isSubFolder = currentPath.includes("/articles/") || currentPath.includes("/categories/");
     const jsonPath = isSubFolder ? "../data/articles.json" : "data/articles.json";
 
-    fetch(jsonPath)
+    fetch(`${jsonPath}?v=${new Date().getTime()}`)
         .then(response => response.json())
         .then(articles => {
             if (!articles || articles.length === 0) return;
 
-            const itemsPerPage = 6;
-            const totalPages = Math.ceil(articles.length / itemsPerPage);
-            let currentPage = 1;
+            // ရက်စွဲအလိုက် နောက်ဆုံးထည့်ထားသော ဆောင်းပါးများကို အပေါ်ဆုံးတင်ရန်
+            articles.reverse();
 
-            function showPage(page) {
-                currentPage = page;
-                const start = (page - 1) * itemsPerPage;
-                const end = start + itemsPerPage;
-                const pageArticles = articles.slice(start, end);
+            const urlPrefix = isSubFolder ? "../" : "";
 
-                articleList.innerHTML = ""; // Container ကို ရှင်းထုတ်မည်
-                const urlPrefix = isSubFolder ? "../" : "";
+            // အကယ်၍ Home Page (latestArticles) ဖြစ်ပါက နောက်ဆုံး ၃ ခုကိုပဲ ပြမည်
+            if (articleContainer.id === "latestArticles") {
+                const latestThree = articles.slice(0, 3);
+                articleContainer.innerHTML = ""; // Static Marker/Cards များကို ရှင်းထုတ်မည်
 
-                pageArticles.forEach(item => {
-                    const card = document.createElement("a");
-                    card.className = "related-card";
-                    card.href = `${urlPrefix}${item.url}`;
+                latestThree.forEach((item, index) => {
+                    const articleNum = String(index + 1).padStart(2, '0');
+                    const card = document.createElement("div");
+                    card.className = "article searchable latest-article";
                     card.innerHTML = `
-                        <div class="card-content">
-                            <span class="category-tag">${item.category || ''}</span>
-                            <h3>${item.title}</h3>
-                            <p>${item.description || ''}</p>
-                            <div class="card-meta">
-                                <span>📊 ${item.level || 'Beginner'}</span>
-                                <span>⏱️ ${item.readingTime || ''}</span>
-                            </div>
-                        </div>
+                        <span class="article-number">${articleNum}</span>
+                        <h3>${item.title}</h3>
+                        <p class="article-meta">
+                            ${item.category || 'General'} • ${item.level || 'Beginner'}
+                            <br>
+                            📅 ${item.date ? item.date.split('T')[0] : ''}
+                        </p>
+                        <p>${item.description || ''}</p>
+                        <a href="${urlPrefix}${item.url}" class="read-more">Read Article →</a>
                     `;
-                    articleList.appendChild(card);
+                    articleContainer.appendChild(card);
                 });
+            } 
+            // အကယ်၍ All Articles Page ဖြစ်ပါက Pagination ဖြင့် အကုန်ပြမည်
+            else if (paginationContainer) {
+                const itemsPerPage = 6;
+                const totalPages = Math.ceil(articles.length / itemsPerPage);
+                let currentPage = 1;
 
-                renderPaginationUI();
-            }
+                function showPage(page) {
+                    currentPage = page;
+                    const start = (page - 1) * itemsPerPage;
+                    const end = start + itemsPerPage;
+                    const pageArticles = articles.slice(start, end);
 
-            function renderPaginationUI() {
-                paginationContainer.innerHTML = "";
-                if (totalPages <= 1) return;
+                    articleContainer.innerHTML = "";
+                    pageArticles.forEach(item => {
+                        const card = document.createElement("a");
+                        card.className = "related-card";
+                        card.href = `${urlPrefix}${item.url}`;
+                        card.innerHTML = `
+                            <div class="card-content">
+                                <span class="category-tag">${item.category || 'General'}</span>
+                                <h3>${item.title}</h3>
+                                <p>${item.description || ''}</p>
+                                <div class="card-meta">
+                                    <span>📊 ${item.level || 'Beginner'}</span>
+                                    <span>⏱️ ${item.readingTime || ''}</span>
+                                </div>
+                            </div>
+                        `;
+                        articleContainer.appendChild(card);
+                    });
 
-                // Prev Button
-                const prevBtn = document.createElement("button");
-                prevBtn.innerText = "« Prev";
-                prevBtn.className = "page-btn";
-                prevBtn.disabled = currentPage === 1;
-                prevBtn.onclick = () => {
-                    showPage(currentPage - 1);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                };
-                paginationContainer.appendChild(prevBtn);
-
-                // Page Number Buttons
-                for (let i = 1; i <= totalPages; i++) {
-                    const btn = document.createElement("button");
-                    btn.innerText = i;
-                    btn.className = `page-btn ${i === currentPage ? "active" : ""}`;
-                    btn.onclick = () => {
-                        showPage(i);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    };
-                    paginationContainer.appendChild(btn);
+                    renderPaginationUI();
                 }
 
-                // Next Button
-                const nextBtn = document.createElement("button");
-                nextBtn.innerText = "Next »";
-                nextBtn.className = "page-btn";
-                nextBtn.disabled = currentPage >= totalPages;
-                nextBtn.onclick = () => {
-                    if (currentPage < totalPages) {
-                        showPage(currentPage + 1);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                };
-                paginationContainer.appendChild(nextBtn);
-            }
+                function renderPaginationUI() {
+                    paginationContainer.innerHTML = "";
+                    if (totalPages <= 1) return;
 
-            showPage(1);
+                    const prevBtn = document.createElement("button");
+                    prevBtn.innerText = "« Prev";
+                    prevBtn.className = "page-btn";
+                    prevBtn.disabled = currentPage === 1;
+                    prevBtn.onclick = () => { showPage(currentPage - 1); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+                    paginationContainer.appendChild(prevBtn);
+
+                    for (let i = 1; i <= totalPages; i++) {
+                        const btn = document.createElement("button");
+                        btn.innerText = i;
+                        btn.className = `page-btn ${i === currentPage ? "active" : ""}`;
+                        btn.onclick = () => { showPage(i); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+                        paginationContainer.appendChild(btn);
+                    }
+
+                    const nextBtn = document.createElement("button");
+                    nextBtn.innerText = "Next »";
+                    nextBtn.className = "page-btn";
+                    nextBtn.disabled = currentPage >= totalPages;
+                    nextBtn.onclick = () => { if (currentPage < totalPages) { showPage(currentPage + 1); window.scrollTo({ top: 0, behavior: 'smooth' }); } };
+                    paginationContainer.appendChild(nextBtn);
+                }
+
+                showPage(1);
+            }
         })
         .catch(err => console.error("Error loading articles:", err));
 });
