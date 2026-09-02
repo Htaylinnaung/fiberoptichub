@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // =====================================================
-// ALL ARTICLES PAGE PAGINATION
+// ALL ARTICLES PAGE DYNAMIC RENDER & PAGINATION
 // =====================================================
 document.addEventListener("DOMContentLoaded", function () {
     const articleList = document.getElementById("auto-article-list");
@@ -147,72 +147,91 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!articleList || !paginationContainer) return;
 
-    // Static အနေဖြင့် ပါလာသော Card များကို ယူမည်
-    const cards = Array.from(articleList.getElementsByClassName("related-card"));
-    const itemsPerPage = 6; // တမျက်နှာလျှင် ပြသမည့် အရေအတွက်
-    const totalPages = Math.ceil(cards.length / itemsPerPage);
-    let currentPage = 1;
+    const currentPath = window.location.pathname;
+    const isSubFolder = currentPath.includes("/articles/") || currentPath.includes("/categories/");
+    const jsonPath = isSubFolder ? "../data/articles.json" : "data/articles.json";
 
-    if (cards.length <= itemsPerPage) return;
+    fetch(jsonPath)
+        .then(response => response.json())
+        .then(articles => {
+            if (!articles || articles.length === 0) return;
 
-    function showPage(page) {
-        currentPage = page;
-        const start = (page - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
+            const itemsPerPage = 6;
+            const totalPages = Math.ceil(articles.length / itemsPerPage);
+            let currentPage = 1;
 
-        cards.forEach((card, index) => {
-            if (index >= start && index < end) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
+            function showPage(page) {
+                currentPage = page;
+                const start = (page - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const pageArticles = articles.slice(start, end);
+
+                articleList.innerHTML = ""; // Container ကို ရှင်းထုတ်မည်
+                const urlPrefix = isSubFolder ? "../" : "";
+
+                pageArticles.forEach(item => {
+                    const card = document.createElement("a");
+                    card.className = "related-card";
+                    card.href = `${urlPrefix}${item.url}`;
+                    card.innerHTML = `
+                        <div class="card-content">
+                            <span class="category-tag">${item.category || ''}</span>
+                            <h3>${item.title}</h3>
+                            <p>${item.description || ''}</p>
+                            <div class="card-meta">
+                                <span>📊 ${item.level || 'Beginner'}</span>
+                                <span>⏱️ ${item.readingTime || ''}</span>
+                            </div>
+                        </div>
+                    `;
+                    articleList.appendChild(card);
+                });
+
+                renderPaginationUI();
             }
-        });
 
-        renderPaginationUI();
-    }
+            function renderPaginationUI() {
+                paginationContainer.innerHTML = "";
+                if (totalPages <= 1) return;
 
-    function renderPaginationUI() {
-        paginationContainer.innerHTML = "";
+                // Prev Button
+                const prevBtn = document.createElement("button");
+                prevBtn.innerText = "« Prev";
+                prevBtn.className = "page-btn";
+                prevBtn.disabled = currentPage === 1;
+                prevBtn.onclick = () => {
+                    showPage(currentPage - 1);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+                paginationContainer.appendChild(prevBtn);
 
-        // Prev Button
-        const prevBtn = document.createElement("button");
-        prevBtn.innerText = "« Prev";
-        prevBtn.className = "page-btn";
-        prevBtn.disabled = currentPage === 1;
-        prevBtn.onclick = () => {
-            showPage(currentPage - 1);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-        paginationContainer.appendChild(prevBtn);
+                // Page Number Buttons
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement("button");
+                    btn.innerText = i;
+                    btn.className = `page-btn ${i === currentPage ? "active" : ""}`;
+                    btn.onclick = () => {
+                        showPage(i);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    };
+                    paginationContainer.appendChild(btn);
+                }
 
-        // Number Buttons
-        for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement("button");
-            btn.innerText = i;
-            btn.className = `page-btn ${i === currentPage ? "active" : ""}`;
-            btn.onclick = () => {
-                showPage(i);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-            paginationContainer.appendChild(btn);
-        }
+                // Next Button
+                const nextBtn = document.createElement("button");
+                nextBtn.innerText = "Next »";
+                nextBtn.className = "page-btn";
+                nextBtn.disabled = currentPage >= totalPages;
+                nextBtn.onclick = () => {
+                    if (currentPage < totalPages) {
+                        showPage(currentPage + 1);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                };
+                paginationContainer.appendChild(nextBtn);
+            }
 
-        // Next Button
-const nextBtn = document.createElement("button");
-nextBtn.innerText = "Next »";
-nextBtn.className = "page-btn";
-// currentPage နဲ့ totalPages တူနေရင် အလုပ်မလုပ်အောင် တိတိကျကျ စစ်မည်
-nextBtn.disabled = (currentPage >= totalPages); 
-nextBtn.onclick = () => {
-    if (currentPage < totalPages) {
-        showPage(currentPage + 1);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-};
-paginationContainer.appendChild(nextBtn);
-
-    }
-
-    // စတင်ချိန်တွင် Page 1 ကို ပြမည်
-    showPage(1);
+            showPage(1);
+        })
+        .catch(err => console.error("Error loading articles:", err));
 });
