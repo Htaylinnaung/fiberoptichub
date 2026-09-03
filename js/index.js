@@ -1,9 +1,10 @@
 /* =====================================================
-   FIBER OPTIC HUB — DYNAMIC JSON SEARCH SYSTEM
+   FIBER OPTIC HUB — DYNAMIC JSON SEARCH & UTILITIES
    - Mobile Menu Navigation
-   - Asynchronous JSON Index Fetching
+   - Asynchronous JSON Index Fetching & Realtime Search
    - Multi-folder Relative Path Handling
-   - Home Page & Category Pages Dynamic Rendering
+   - Dynamic Article Rendering & Pagination
+   - Category Filter & Loss Budget Calculator
 ===================================================== */
 
 // 1. MOBILE MENU TOGGLE
@@ -30,7 +31,7 @@ function closeMenu() {
     }
 }
 
-// 2. DYNAMIC SEARCH INDEX FETCHING & REALTIME SEARCH
+// 2. DYNAMIC SEARCH INDEX FETCHING & REALTIME DROPDOWN SEARCH
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("searchInput") || document.querySelector(".search-box input");
     const searchDropdown = document.getElementById("searchResults") || document.querySelector(".search-results-dropdown");
@@ -39,17 +40,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let articlesIndex = [];
     
-    // Determine relative path for data/articles.json based on current page location
+    // Determine relative path for data/articles.json based on page location
     const currentPath = window.location.pathname;
     const isSubFolder = currentPath.includes("/articles/") || currentPath.includes("/categories/");
     const jsonPath = isSubFolder ? "../data/articles.json" : "data/articles.json";
 
-    // Fetch Articles JSON Data dynamically (Cache Busting)
+    // Fetch Articles JSON Data dynamically
     fetch(`${jsonPath}?v=${new Date().getTime()}`)
         .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to load articles index");
-            }
+            if (!response.ok) throw new Error("Failed to load articles index");
             return response.json();
         })
         .then(data => {
@@ -114,7 +113,7 @@ function renderSearchResults(results, query, dropdown, isSubFolder) {
             <a href="${urlPrefix}${item.url}" class="search-result-card">
                 <div class="search-result-content">
                     <h3>${item.title}</h3>
-                    <div class="search-result-meta">🏷️ ${item.category} • 📊 ${item.level}</div>
+                    <div class="search-result-meta">🏷️ ${item.category} • 📊 ${item.level || 'Beginner'}</div>
                     <p>${item.description || ''}</p>
                 </div>
             </a>
@@ -139,9 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// =====================================================
-// HOME PAGE & ALL ARTICLES DYNAMIC RENDER
-// =====================================================
+// 5. HOME PAGE & ALL ARTICLES DYNAMIC RENDER
 document.addEventListener("DOMContentLoaded", function () {
     const articleContainer = document.getElementById("latestArticles") || document.getElementById("auto-article-list");
     const paginationContainer = document.getElementById("articlePagination");
@@ -157,16 +154,12 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(articles => {
             if (!articles || articles.length === 0) return;
 
-            // ရက်စွဲအလိုက် စစ်ဆေးပြီး အသစ်ဆုံး ဆောင်းပါးကို အပေါ်ဆုံး စီစဉ်ခြင်း
-            articles.sort((a, b) => {
-                const dateA = new Date(a.date || 0);
-                const dateB = new Date(b.date || 0);
-                return dateB - dateA;
-            });
+            // Sort by Date (Newest first)
+            articles.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 
             const urlPrefix = isSubFolder ? "../" : "";
 
-            // ၁။ Home Page (latestArticles) ဖြစ်ပါက နောက်ဆုံး ၃ ခုကို ပြမည်
+            // Home Page Display (Latest 3 Articles)
             if (articleContainer.id === "latestArticles") {
                 const latestThree = articles.slice(0, 3);
                 articleContainer.innerHTML = "";
@@ -175,6 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const articleNum = String(index + 1).padStart(2, '0');
                     const card = document.createElement("div");
                     card.className = "article searchable latest-article";
+                    card.dataset.category = (item.category || '').toLowerCase();
                     card.innerHTML = `
                         <span class="article-number">${articleNum}</span>
                         <h3>${item.title}</h3>
@@ -189,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     articleContainer.appendChild(card);
                 });
             } 
-            // ၂။ Pagination ပါရှိသော All Articles Page ဖြစ်ပါက
+            // All Articles Page with Pagination
             else if (paginationContainer) {
                 const itemsPerPage = 6;
                 const totalPages = Math.ceil(articles.length / itemsPerPage);
@@ -198,13 +192,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 function showPage(page) {
                     currentPage = page;
                     const start = (page - 1) * itemsPerPage;
-                    const end = start + itemsPerPage;
-                    const pageArticles = articles.slice(start, end);
+                    const pageArticles = articles.slice(start, start + itemsPerPage);
 
                     articleContainer.innerHTML = "";
                     pageArticles.forEach(item => {
                         const card = document.createElement("a");
-                        card.className = "related-card";
+                        card.className = "related-card article-card";
+                        card.dataset.category = (item.category || '').toLowerCase();
                         card.href = `${urlPrefix}${item.url}`;
                         card.innerHTML = `
                             <div class="card-content">
@@ -252,12 +246,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 showPage(1);
             }
-            // ၃။ Pagination မပါဘဲ auto-article-list တစ်ခုတည်း ရှိနေပါက အားလုံးကို အသစ်မှ အဟောင်း စီပြမည်
+            // Simple List without Pagination
             else {
                 articleContainer.innerHTML = "";
                 articles.forEach(item => {
                     const card = document.createElement("a");
-                    card.className = "related-card";
+                    card.className = "related-card article-card";
+                    card.dataset.category = (item.category || '').toLowerCase();
                     card.href = `${urlPrefix}${item.url}`;
                     card.innerHTML = `
                         <div class="card-content">
@@ -277,27 +272,37 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(err => console.error("Error loading articles:", err));
 });
 
-// 1. Live Search
+// 6. LOCAL STATIC PAGE FILTERS & TOOLS
+
+// Live Search for Static Cards
 function searchArticles() {
-    let input = document.getElementById('searchInput').value.toLowerCase();
-    let cards = document.querySelectorAll('.article-card');
+    const inputElement = document.getElementById('searchInput');
+    if (!inputElement) return;
+    
+    const input = inputElement.value.toLowerCase();
+    const cards = document.querySelectorAll('.article-card, .article');
     
     cards.forEach(card => {
-        let text = card.innerText.toLowerCase();
+        const text = card.innerText.toLowerCase();
         card.style.display = text.includes(input) ? "block" : "none";
     });
 }
 
-// 2. Category Filter
-function filterCategory(category) {
-    let cards = document.querySelectorAll('.article-card');
-    let buttons = document.querySelectorAll('.pill-btn');
+// Category Filter Function
+function filterCategory(category, event) {
+    const cards = document.querySelectorAll('.article-card, .article');
+    const buttons = document.querySelectorAll('.pill-btn');
     
     buttons.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
+
+    const selectedCategory = category.toLowerCase();
 
     cards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
+        const cardCategory = (card.dataset.category || '').toLowerCase();
+        if (selectedCategory === 'all' || cardCategory === selectedCategory) {
             card.style.display = 'block';
         } else {
             card.style.display = 'none';
@@ -305,12 +310,18 @@ function filterCategory(category) {
     });
 }
 
-// 3. Loss Budget Calculator Tool
+// Loss Budget Calculator Tool
 function calculateLoss() {
-    let len = parseFloat(document.getElementById('fiberLength').value) || 0;
-    let splices = parseInt(document.getElementById('spliceCount').value) || 0;
+    const lenInput = document.getElementById('fiberLength');
+    const spliceInput = document.getElementById('spliceCount');
+    const resultDisplay = document.getElementById('calcResult');
+
+    if (!lenInput || !spliceInput || !resultDisplay) return;
+
+    const len = parseFloat(lenInput.value) || 0;
+    const splices = parseInt(spliceInput.value, 10) || 0;
     
     // Standard: Fiber loss (1310nm) ~0.35dB/km, Splice loss ~0.1dB/splice
-    let totalLoss = (len * 0.35) + (splices * 0.1);
-    document.getElementById('calcResult').innerText = `Estimated Max Loss: ${totalLoss.toFixed(2)} dB`;
+    const totalLoss = (len * 0.35) + (splices * 0.1);
+    resultDisplay.innerText = `Estimated Max Loss: ${totalLoss.toFixed(2)} dB`;
 }
