@@ -3,83 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiber Optic Hub | Technical Knowledge & Field Guide</title>
-    <link rel="stylesheet" href="css/index.css">
+    <title>Fiber Optic Technical Hub</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <header>
-        <div class="logo">🌐 Fiber <span>Optic Hub</span></div>
+    <!-- SITE HEADER -->
+    <header class="site-header">
+        <a href="index.html" class="logo">Fiber Optic <span>Hub</span></a>
         <nav class="main-nav">
             <a href="index.html">Home</a>
             <a href="#categories">Categories</a>
-            <a href="#latest-articles">Articles</a>
+            <a href="#latestArticles">Articles</a>
             <a href="#tools">Tools</a>
         </nav>
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search articles, attenuation, splicing..." onkeyup="searchArticles()">
-        </div>
+        <button class="menu" onclick="toggleMenu()" aria-label="Toggle Menu">☰</button>
     </header>
 
-    <main class="container">
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html" onclick="closeMenu()">Home</a>
+        <a href="#categories" onclick="closeMenu()">Categories</a>
+        <a href="#latestArticles" onclick="closeMenu()">Articles</a>
+        <a href="#tools" onclick="closeMenu()">Tools</a>
+    </div>
 
-        <!-- HERO / FEATURED SECTION -->
-        <section class="hero-section">
-            <h1>Fiber Optic Technical Hub</h1>
-            <p>FTTH, OTDR Testing, Splicing နှင့် Fiber Network နည်းပညာဆိုင်ရာ တည်ဆောက်ပုံများကို လေ့လာပါ။</p>
-        </section>
-
-        <!-- FEATURE 1: CATEGORIES FILTER -->
-        <section id="categories" class="section-container">
-            <h2>📚 Browse by Categories</h2>
-            <div class="category-pills">
-                <button class="pill-btn active" onclick="filterCategory('all')">All Articles</button>
-                <button class="pill-btn" onclick="filterCategory('Fiber Optic Basics')">Basics</button>
-                <button class="pill-btn" onclick="filterCategory('FTTH')">FTTH / PON</button>
-                <button class="pill-btn" onclick="filterCategory('OTDR & OPM')">Testing & OTDR</button>
-                <button class="pill-btn" onclick="filterCategory('Splicing')">Splicing</button>
-            </div>
-        </section>
-
-        <!-- MAIN CONTENT: LATEST ARTICLES (NEWEST FIRST) -->
-        <section id="latest-articles" class="section-container">
-            <h2>📰 Latest Technical Articles</h2>
+    <!-- HERO SECTION & SEARCH -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-label">TECHNICAL RESOURCES</span>
+            <h1>Fiber Optic <span>Technical Hub</span></h1>
+            <p class="hero-description">FTTH, OTDR Testing, Splicing နှင့် Fiber Network နည်းပညာဆိုင်ရာ တည်ဆောက်ပုံများကို လေ့လာပါ။</p>
             
-            <!-- Python build_articles.py မှ Auto-Inject ပေးမည့် နေရာ -->
-            <div class="articles-grid" id="homepage-articles">
-                <!-- HOMEPAGE_ARTICLES_START -->
-
-        <div class="article-card" data-category="Fiber Optic Basics">
-            <span class="category-tag">Fiber Optic Basics</span>
-            <h3><a href="articles/connectors.html">Connectors</a></h3>
-            <p>Fiber Optic Connectors အဓိက အမျိုးအစားများနှင့် Specifications များ</p>
-            <div class="card-meta">
-                <span>Beginner • 3 min read</span>
-                <span>📅 2026-09-03</span>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search articles, attenuation, splicing..." autocomplete="off">
+                <div class="search-results-dropdown" id="searchResults"></div>
             </div>
         </div>
-<!-- HOMEPAGE_ARTICLES_END -->
-            </div>
-        </section>
+    </section>
 
-        <!-- FEATURE 2: QUICK FIELD CALCULATOR TOOLS -->
-        <section id="tools" class="section-container tools-card">
-            <h2>⚡ Quick Optical Loss Budget Calculator</h2>
+    <!-- CATEGORIES SECTION -->
+    <section id="categories">
+        <div class="section-heading">
+            <span class="section-label">CATEGORIES</span>
+            <h2>Browse by Categories</h2>
+        </div>
+        <div class="category-pills">
+            <button class="pill-btn active" onclick="filterCategory('all', event)">All Articles</button>
+            <button class="pill-btn" onclick="filterCategory('basics', event)">Basics</button>
+            <button class="pill-btn" onclick="filterCategory('ftth', event)">FTTH / PON</button>
+
+            <button class="pill-btn" onclick="filterCategory('testing', event)">Testing & OTDR</button>
+            <button class="pill-btn" onclick="filterCategory('splicing', event)">Splicing</button>
+        </div>
+    </section>
+
+    <!-- LATEST ARTICLES SECTION -->
+    <section id="latestArticlesSection">
+        <div class="section-heading">
+            <span class="section-label">LATEST POSTS</span>
+            <h2>Latest Technical Articles</h2>
+        </div>
+        <div class="articles-grid" id="latestArticles">
+            <!-- Articles will load dynamically via JS -->
+        </div>
+    </section>
+
+    <!-- TOOLS SECTION -->
+    <section id="tools">
+        <div class="section-heading">
+            <span class="section-label">CALCULATOR</span>
+            <h2>Quick Optical Loss Budget Calculator</h2>
+        </div>
+        <div class="tools-card">
             <div class="calculator-form">
-                <input type="number" id="fiberLength" placeholder="Fiber Distance (km)">
+                <input type="number" id="fiberLength" placeholder="Fiber Distance (km)" step="0.1">
                 <input type="number" id="spliceCount" placeholder="Splice Count">
-                <button onclick="calculateLoss()">Calculate Loss</button>
-                <p id="calcResult" class="calc-result"></p>
+                <button type="button" onclick="calculateLoss()">Calculate Loss</button>
             </div>
-        </section>
+            <div class="calc-result" id="calcResult"></div>
+        </div>
+    </section>
 
-    </main>
-
+    <!-- FOOTER -->
     <footer>
+        <div class="footer-logo">Fiber Optic <span>Hub</span></div>
         <p>© 2026 Fiber Optic Hub. All rights reserved.</p>
     </footer>
 
-    <script src="js/index.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
