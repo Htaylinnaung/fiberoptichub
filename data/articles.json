@@ -1,11 +1,11 @@
 [
     {
-        "title": "Fiber Optic Color Codes (TIA/EIA-598 Standard)",
-        "url": "articles/color-code-standard.html",
-        "date": "2026-09-03T12:00:00+07:00",
-        "category": "Fiber Optic Basics",
+        "title": "Fusion Splicing Basics",
+        "url": "articles/what-is-fusion-splicing.html",
+        "date": "2026-08-24T09:00:00+07:00",
+        "category": "Splicing",
         "level": "Beginner",
-        "description": "TIA/EIA-598 Standard အရ Fiber Optic Cable အတွင်းရှိ Core များ၊ Buffer Tube များ၊ Outer Jacket နှင့် Connectors များကို အရောင်ဖြင့် စနစ်တကျ ခွဲခြားသတ်မှတ်ပုံများ။",
+        "description": "Fusion Splicing ဆိုတာဘာလဲ၊ လိုအပ်တဲ့ Tools တွေ၊ Stripping၊ Cleaning၊ Cleaving၊ Alignment၊ Arc Fusion နဲ့ Splice Protection အဆင့်တွေကို Beginner များအတွက် လေ့လာနိုင်ပါတယ်။",
         "readingTime": "2 min read"
     },
     {
@@ -18,31 +18,13 @@
         "readingTime": "3 min read"
     },
     {
-        "title": "OLT (Optical Line Terminal) ဆိုတာဘာလဲ?",
-        "url": "articles/olt.html",
-        "date": "2026-08-31T00:00:00+07:00",
-        "category": "FTTH",
-        "level": "Beginner",
-        "description": "FTTH နှင့် PON Network တွင် OLT ၏ အလုပ်လုပ်ပုံ၊ Data Flow၊ အဓိက Function များနှင့် Technical Specifications များကို လေ့လာနိုင်ပါသည်။",
-        "readingTime": "4 min read"
-    },
-    {
-        "title": "Fiber Optic Attenuation",
-        "url": "articles/attenuation.html",
-        "date": "2026-08-29T14:00:00+07:00",
+        "title": "Mode Field Diameter (MFD)",
+        "url": "articles/mode-field-diameter.html",
+        "date": "2026-08-30T10:00:00+07:00",
         "category": "Fiber Optic Basics",
-        "level": "Beginner",
-        "description": "Fiber Optic Attenuation ဆိုတာဘာလဲ၊ Signal Loss ဖြစ်စေတဲ့အကြောင်းရင်းများနဲ့ Attenuation ကို ဘယ်လိုတိုင်းတာသလဲ လေ့လာနိုင်ပါတယ်။",
+        "level": "Intermediate",
+        "description": "Mode Field Diameter (MFD) ဆိုတာဘာလဲ၊ Physical Core Diameter နဲ့ ဘာကွာသလဲ၊ Wavelength၊ Splicing၊ Coupling နဲ့ Bend Performance တို့နဲ့ ဘယ်လိုဆက်နွယ်သလဲ လေ့လာနိုင်ပါတယ်။",
         "readingTime": "3 min read"
-    },
-    {
-        "title": "Single Mode vs Multimode",
-        "url": "articles/single-mode-vs-multimode.html",
-        "date": "2026-08-25T09:00:00+07:00",
-        "category": "Fiber Optic Basics",
-        "level": "Beginner",
-        "description": "Single Mode Fiber နှင့် Multimode Fiber တို့၏ Core Size၊ Distance၊ Wavelength နှင့် အသုံးပြုပုံကွာခြားချက်များကို Beginner များအတွက် လေ့လာနိုင်ပါတယ်။",
-        "readingTime": "2 min read"
     },
     {
         "title": "FTTH Basics",
@@ -54,13 +36,31 @@
         "readingTime": "3 min read"
     },
     {
-        "title": "Fiber Troubleshooting",
-        "url": "articles/fiber-troubleshooting.html",
-        "date": "2026-08-29T16:00:00+07:00",
+        "title": "Fiber Optic Color Codes (TIA/EIA-598 Standard)",
+        "url": "articles/color-code-standard.html",
+        "date": "2026-09-03T12:00:00+07:00",
         "category": "Fiber Optic Basics",
         "level": "Beginner",
-        "description": "Fiber Optic Network မှာ ဖြစ်ပေါ်နိုင်တဲ့ Link Down၊ Low Optical Power၊ High Loss၊ Fiber Break၊ Connector နဲ့ Splice ပြဿနာတွေကို အဆင့်လိုက် ရှာဖွေဖြေရှင်းနည်း လေ့လာနိုင်ပါတယ်။",
+        "description": "TIA/EIA-598 Standard အရ Fiber Optic Cable အတွင်းရှိ Core များ၊ Buffer Tube များ၊ Outer Jacket နှင့် Connectors များကို အရောင်ဖြင့် စနစ်တကျ ခွဲခြားသတ်မှတ်ပုံများ။",
         "readingTime": "2 min read"
+    },
+    {
+        "title": "Single Mode vs Multimode",
+        "url": "articles/single-mode-vs-multimode.html",
+        "date": "2026-08-25T09:00:00+07:00",
+        "category": "Fiber Optic Basics",
+        "level": "Beginner",
+        "description": "Single Mode Fiber နှင့် Multimode Fiber တို့၏ Core Size၊ Distance၊ Wavelength နှင့် အသုံးပြုပုံကွာခြားချက်များကို Beginner များအတွက် လေ့လာနိုင်ပါတယ်။",
+        "readingTime": "2 min read"
+    },
+    {
+        "title": "Fiber Optic Attenuation",
+        "url": "articles/attenuation.html",
+        "date": "2026-08-29T14:00:00+07:00",
+        "category": "Fiber Optic Basics",
+        "level": "Beginner",
+        "description": "Fiber Optic Attenuation ဆိုတာဘာလဲ၊ Signal Loss ဖြစ်စေတဲ့အကြောင်းရင်းများနဲ့ Attenuation ကို ဘယ်လိုတိုင်းတာသလဲ လေ့လာနိုင်ပါတယ်။",
+        "readingTime": "3 min read"
     },
     {
         "title": "What is Fiber Optic?",
@@ -72,30 +72,30 @@
         "readingTime": "2 min read"
     },
     {
-        "title": "Fusion Splicing Basics",
-        "url": "articles/what-is-fusion-splicing.html",
-        "date": "2026-08-24T09:00:00+07:00",
-        "category": "Splicing",
-        "level": "Beginner",
-        "description": "Fusion Splicing ဆိုတာဘာလဲ၊ လိုအပ်တဲ့ Tools တွေ၊ Stripping၊ Cleaning၊ Cleaving၊ Alignment၊ Arc Fusion နဲ့ Splice Protection အဆင့်တွေကို Beginner များအတွက် လေ့လာနိုင်ပါတယ်။",
-        "readingTime": "2 min read"
-    },
-    {
-        "title": "Mode Field Diameter (MFD)",
-        "url": "articles/mode-field-diameter.html",
-        "date": "2026-08-30T10:00:00+07:00",
-        "category": "Fiber Optic Basics",
-        "level": "Intermediate",
-        "description": "Mode Field Diameter (MFD) ဆိုတာဘာလဲ၊ Physical Core Diameter နဲ့ ဘာကွာသလဲ၊ Wavelength၊ Splicing၊ Coupling နဲ့ Bend Performance တို့နဲ့ ဘယ်လိုဆက်နွယ်သလဲ လေ့လာနိုင်ပါတယ်။",
-        "readingTime": "3 min read"
-    },
-    {
         "title": "Fiber Optic Loss",
         "url": "articles/fiber-loss.html",
         "date": "2026-08-30T15:30:00+07:00",
         "category": "Fiber Optic Basics",
         "level": "Beginner",
         "description": "Fiber Optic Loss ဆိုတာဘာလဲ၊ Loss ဖြစ်စေတဲ့ အကြောင်းရင်းများနဲ့ Fiber Link Performance အပေါ် ဘယ်လိုသက်ရောက်သလဲ လေ့လာနိုင်ပါတယ်။",
+        "readingTime": "2 min read"
+    },
+    {
+        "title": "OLT (Optical Line Terminal) ဆိုတာဘာလဲ?",
+        "url": "articles/olt.html",
+        "date": "2026-08-31T00:00:00+07:00",
+        "category": "FTTH",
+        "level": "Beginner",
+        "description": "FTTH နှင့် PON Network တွင် OLT ၏ အလုပ်လုပ်ပုံ၊ Data Flow၊ အဓိက Function များနှင့် Technical Specifications များကို လေ့လာနိုင်ပါသည်။",
+        "readingTime": "4 min read"
+    },
+    {
+        "title": "Fiber Troubleshooting",
+        "url": "articles/fiber-troubleshooting.html",
+        "date": "2026-08-29T16:00:00+07:00",
+        "category": "Fiber Optic Basics",
+        "level": "Beginner",
+        "description": "Fiber Optic Network မှာ ဖြစ်ပေါ်နိုင်တဲ့ Link Down၊ Low Optical Power၊ High Loss၊ Fiber Break၊ Connector နဲ့ Splice ပြဿနာတွေကို အဆင့်လိုက် ရှာဖွေဖြေရှင်းနည်း လေ့လာနိုင်ပါတယ်။",
         "readingTime": "2 min read"
     }
 ]
