@@ -3,13 +3,14 @@ import re
 import yaml
 import json
 
-# Paths Configuration (scripts/ folder ထဲမှ Run လျှင် Root Path ကို အလိုအလျောက် ယူပေးမည်)
+# Relative Paths Configuration
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_PATH = os.path.join(BASE_DIR, "templates", "template.html")
 SOURCE_FOLDER = os.path.join(BASE_DIR, "markdown_articles")
 OUTPUT_FOLDER = os.path.join(BASE_DIR, "articles")
 DATA_DIR = os.path.join(BASE_DIR, "data")
 JSON_OUTPUT = os.path.join(DATA_DIR, "articles.json")
+ALL_ARTICLES_HTML = os.path.join(BASE_DIR, "categories", "all-articles.html")
 
 def parse_frontmatter(file_content):
     """YAML Frontmatter metadata နှင့် Content ကို ခွဲထုတ်ပေးသည့် Function"""
@@ -22,7 +23,6 @@ def parse_frontmatter(file_content):
     return {}, file_content
 
 def build_articles():
-    # Folder & Template စစ်ဆေးခြင်း
     if not os.path.exists(TEMPLATE_PATH):
         print(f"❌ Error: {TEMPLATE_PATH} ရှာမတွေ့ပါ။")
         return
@@ -39,7 +39,7 @@ def build_articles():
 
     articles_data = []
 
-    # Markdown ဖိုင်များကို ဖြတ်သန်းဖတ်ယူခြင်း
+    # 1. Markdown ဖိုင်များကို ဖတ်ပြီး HTML ဖိုင်များ တည်ဆောက်ခြင်း
     for filename in os.listdir(SOURCE_FOLDER):
         if filename.endswith(".md") or filename.endswith(".html"):
             filepath = os.path.join(SOURCE_FOLDER, filename)
@@ -49,7 +49,6 @@ def build_articles():
 
             metadata, body = parse_frontmatter(raw_content)
 
-            # Metadata ရယူခြင်း
             title = metadata.get("title", "Untitled")
             date = metadata.get("date", "2026-09-03")
             category = metadata.get("category", "Basics")
@@ -59,7 +58,6 @@ def build_articles():
             prev_article = metadata.get("prev_article", "#")
             next_article = metadata.get("next_article", "#")
 
-            # Template ထဲသို့ Inject ပြုလုပ်ခြင်း
             output_html = template_html.replace("{{ARTICLE_TITLE}}", str(title))
             output_html = output_html.replace("{{ARTICLE_DATE}}", str(date))
             output_html = output_html.replace("{{ARTICLE_CATEGORY}}", str(category))
@@ -70,17 +68,15 @@ def build_articles():
             output_html = output_html.replace("{{NEXT_ARTICLE}}", str(next_article))
             output_html = output_html.replace("{{ARTICLE_CONTENT}}", body.strip())
 
-            # HTML ဖိုင်အဖြစ် Output ထုတ်ပေးခြင်း
             output_filename = filename.rsplit(".", 1)[0] + ".html"
             output_filepath = os.path.join(OUTPUT_FOLDER, output_filename)
 
             with open(output_filepath, "w", encoding="utf-8") as f:
                 f.write(output_html)
 
-            # articles.json အတွက် Data စုဆောင်းခြင်း
             articles_data.append({
                 "title": title,
-                "url": f"articles/{output_filename}",
+                "url": f"../articles/{output_filename}",
                 "date": str(date),
                 "category": category,
                 "level": level,
@@ -88,13 +84,46 @@ def build_articles():
                 "readingTime": read_time
             })
 
-            print(f"✅ Successfully Built: {output_filepath}")
+            print(f"✅ Built Article: {output_filepath}")
 
-    # articles.json သို့ Auto-Save ပြုလုပ်ခြင်း
+    # 2. articles.json ထဲသို့ Save ပြုလုပ်ခြင်း
     with open(JSON_OUTPUT, "w", encoding="utf-8") as jf:
         json.dump(articles_data, jf, ensure_ascii=False, indent=4)
-        
-    print(f"\n🎉 articles.json တွင် ဆောင်းပါး ( {len(articles_data)} ) ပုဒ် update ပြုလုပ်ပြီးပါပြီ။")
+
+    # 3. categories/all-articles.html ကို Auto-Update ပြုလုပ်ခြင်း
+    if os.path.exists(ALL_ARTICLES_HTML):
+        update_all_articles_page(articles_data)
+
+    print(f"\n🎉 All builds completed! Updated {len(articles_data)} articles.")
+
+def update_all_articles_page(articles_data):
+    """all-articles.html အတွင်းသို့ HTML Article Cards များကို အလိုအလျောက် ထည့်သွင်းပေးသည့် Function"""
+    with open(ALL_ARTICLES_HTML, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    cards_html = ""
+    for article in articles_data:
+        cards_html += f'''
+        <div class="article-card">
+            <span class="category-tag">{article['category']}</span>
+            <h3><a href="{article['url']}">{article['title']}</a></h3>
+            <p>{article['description']}</p>
+            <div class="card-meta">
+                <span>{article['level']} • {article['readingTime']}</span>
+                <span>{article['date']}</span>
+            </div>
+        </div>
+        '''
+
+    # all-articles.html ထဲက <!-- ARTICLES_LIST_START --> နဲ့ <!-- ARTICLES_LIST_END --> ကြားထဲ Inject လုပ်မည်
+    pattern = r"(<!-- ARTICLES_LIST_START -->)(.*?)(<!-- ARTICLES_LIST_END -->)"
+    replacement = f"\\1\n{cards_html}\n\\3"
+    
+    if re.search(pattern, content, re.DOTALL):
+        updated_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+        with open(ALL_ARTICLES_HTML, "w", encoding="utf-8") as f:
+            f.write(updated_content)
+        print(f"✅ Updated Category Page: {ALL_ARTICLES_HTML}")
 
 if __name__ == "__main__":
     build_articles()
