@@ -276,3 +276,41 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(err => console.error("Error loading articles:", err));
 });
+
+// 1. Live Search
+function searchArticles() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let cards = document.querySelectorAll('.article-card');
+    
+    cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        card.style.display = text.includes(input) ? "block" : "none";
+    });
+}
+
+// 2. Category Filter
+function filterCategory(category) {
+    let cards = document.querySelectorAll('.article-card');
+    let buttons = document.querySelectorAll('.pill-btn');
+    
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// 3. Loss Budget Calculator Tool
+function calculateLoss() {
+    let len = parseFloat(document.getElementById('fiberLength').value) || 0;
+    let splices = parseInt(document.getElementById('spliceCount').value) || 0;
+    
+    // Standard: Fiber loss (1310nm) ~0.35dB/km, Splice loss ~0.1dB/splice
+    let totalLoss = (len * 0.35) + (splices * 0.1);
+    document.getElementById('calcResult').innerText = `Estimated Max Loss: ${totalLoss.toFixed(2)} dB`;
+}
