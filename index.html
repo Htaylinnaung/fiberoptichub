@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 
 <head>
 
@@ -36,6 +36,68 @@
         href="images/favicon.svg"
     >
 
+    <!-- =========================
+         SOCIAL SHARING / OG
+    ========================= -->
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:title"
+        content="Fiber Optic Hub"
+    >
+
+    <meta
+        property="og:description"
+        content="Fiber Optic, FTTH, OTDR, Troubleshooting and Network Technology."
+    >
+
+    <meta
+        property="og:image"
+        content="https://htaylinnaung.github.io/fiberoptichub/images/og-image.png"
+    >
+
+    <meta
+        property="og:url"
+        content="https://htaylinnaung.github.io/fiberoptichub/"
+    >
+
+    <meta
+        property="og:site_name"
+        content="Fiber Optic Hub"
+    >
+
+    <!-- =========================
+         TWITTER / X
+    ========================= -->
+
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Fiber Optic Hub"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Fiber Optic, FTTH, OTDR, Troubleshooting and Network Technology."
+    >
+
+    <meta
+        name="twitter:image"
+        content="https://htaylinnaung.github.io/fiberoptichub/images/og-image.png"
+    >
+
+    <!-- =========================
+         CSS
+    ========================= -->
+
     <link
         rel="stylesheet"
         href="css/index.css"
@@ -43,617 +105,647 @@
 
     <title>Fiber Optic Hub</title>
 
+    <!-- =========================
+         GOOGLE ANALYTICS
+    ========================= -->
+
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-1MTHL3RRGV"
+    ></script>
+
+    <script>
+
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-1MTHL3RRGV');
+
+    </script>
+
 </head>
 
 
 <body id="top">
 
 
-<!-- =========================
-     HEADER
-========================= -->
+    <!-- =========================
+         HEADER
+    ========================= -->
 
-<header>
+    <header class="site-header">
 
-    <div class="logo">
-        🔵 Fiber <span>Optic Hub</span>
-    </div>
+        <div class="logo">🌐 Fiber <span>Optic Hub</span></div>
 
 
-    <nav class="main-nav">
+        <nav class="main-nav">
 
-        <a href="#top">
-            Home
+            <a href="#top">
+                Home
+            </a>
+
+            <a href="#topics">
+                Learn
+            </a>
+
+            <a href="#articles">
+                Articles
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+        </nav>
+
+
+        <button
+            class="menu"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            onclick="toggleMenu()"
+        >
+            ☰
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         MOBILE MENU
+    ========================= -->
+
+    <nav
+        class="mobile-nav"
+        id="mobileNav"
+    >
+
+        <a
+            href="#top"
+            onclick="closeMenu()"
+        >
+            🏠 Home
         </a>
 
-        <a href="#topics">
-            Learn
+        <a
+            href="#topics"
+            onclick="closeMenu()"
+        >
+            📚 Learn
         </a>
 
-        <a href="#articles">
-            Articles
+        <a
+            href="#articles"
+            onclick="closeMenu()"
+        >
+            📰 Articles
         </a>
 
-        <a href="#about">
-            About
+        <a
+            href="#about"
+            onclick="closeMenu()"
+        >
+            ℹ️ About
         </a>
 
     </nav>
 
 
-    <button
-        class="menu"
-        type="button"
-        aria-label="Open menu"
-        aria-expanded="false"
-        onclick="toggleMenu()"
-    >
-        ☰
-    </button>
+    <!-- =========================
+         HERO
+    ========================= -->
 
-</header>
+    <main>
 
+        <section class="hero">
 
+            <div class="hero-content">
 
-<!-- =========================
-     MOBILE MENU
-========================= -->
+                <p class="hero-label">
+                    📡 FIBER OPTIC KNOWLEDGE HUB
+                </p>
 
-<div
-    id="mobileMenu"
-    class="mobile-menu"
->
+                <h1>
+                    FIBER OPTIC
+                    <span>HUB</span>
+                </h1>
 
-    <a
-        href="#top"
-        onclick="closeMenu()"
-    >
-        🏠 Home
-    </a>
+                <p class="hero-description">
 
-    <a
-        href="#topics"
-        onclick="closeMenu()"
-    >
-        📚 Learn
-    </a>
+                    Fiber Optic နည်းပညာကို
+                    အခြေခံမှစပြီး လေ့လာပါ။
 
-    <a
-        href="#articles"
-        onclick="closeMenu()"
-    >
-        📰 Articles
-    </a>
+                    <br>
 
-    <a
-        href="#about"
-        onclick="closeMenu()"
-    >
-        ℹ️ About
-    </a>
+                    Learn • Practice • Share
 
-</div>
+                </p>
 
 
+                <!-- =========================
+                     SEARCH
+                ========================= -->
 
-<!-- =========================
-     HOME PAGE
-========================= -->
+                <div class="search-box">
 
-<main id="homePage">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="🔍 Search fiber optic knowledge..."
+                        autocomplete="off"
+                        aria-label="Search fiber optic knowledge"
+                    >
 
+                    <!-- Search Result ပြသရန် Container (မပါမဖြစ်) -->
+                    <div
+                        id="searchResults"
+                        class="search-results-dropdown"
+                    ></div>
 
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <p class="hero-label">
-            📡 FIBER OPTIC KNOWLEDGE HUB
-        </p>
-
-
-        <h1>
-            FIBER OPTIC
-            <span>HUB</span>
-        </h1>
+                </div>
 
 
-        <p class="hero-description">
+                <a
+                    href="#topics"
+                    class="btn"
+                >
+                    START LEARNING →
+                </a>
 
-            Fiber Optic နည်းပညာကို
-            အခြေခံမှစပြီး လေ့လာပါ။
+            </div>
 
-            <br>
-
-            Learn • Practice • Share
-
-        </p>
-
-
-        <div class="search-box">
-
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="🔍 Search fiber optic knowledge..."
-                oninput="searchArticles()"
-                autocomplete="off"
-            >
-
-        </div>
+        </section>
 
 
-        <a
-            href="#topics"
-            class="btn"
+        <!-- =========================
+             TOPICS
+        ========================= -->
+
+        <section
+            class="section"
+            id="topics"
         >
-            START LEARNING →
-        </a>
 
-    </div>
+            <div class="section-heading">
 
-</section>
+                <span class="section-label">
+                    LEARN
+                </span>
 
+                <h2>
+                    Popular Topics
+                </h2>
 
+                <p>
+                    Fiber Optic နည်းပညာကို
+                    Category အလိုက် လေ့လာနိုင်ပါတယ်။
+                </p>
 
-<!-- =========================
-     CATEGORIES
-========================= -->
-
-<section id="topics">
-
-    <div class="section-heading">
-
-        <span class="section-label">
-            LEARN
-        </span>
-
-
-        <h2>
-            Popular Topics
-        </h2>
-
-
-        <p>
-            Fiber Optic နည်းပညာကို
-            Category အလိုက် လေ့လာနိုင်ပါတယ်။
-        </p>
-
-    </div>
-
-
-
-    <div class="topics">
-
-
-        <!-- =========================
-             CATEGORY 01
-             FIBER OPTIC BASICS
-        ========================== -->
-
-        <div class="card searchable">
-
-            <div class="card-icon">
-                📚
             </div>
 
 
-            <h3>
-                Fiber Optic Basics
-            </h3>
+            <div class="topics">
 
 
-            <p>
-                Fiber Optic ရဲ့ အခြေခံသဘောတရားများ၊
-                Core၊ Cladding၊ Coating၊
-                Fiber Types နဲ့ အခြားအခြေခံ
-                နည်းပညာများကို လေ့လာနိုင်ပါတယ်။
-            </p>
+                <!-- CATEGORY 01 -->
+
+                <div class="card searchable">
+
+                    <div class="card-icon">
+                        📚
+                    </div>
+
+                    <h3>
+                        Fiber Optic Basics
+                    </h3>
+
+                    <p>
+                        Fiber Optic ရဲ့ အခြေခံသဘောတရားများ၊
+                        Core၊ Cladding၊ Coating၊
+                        Fiber Types နဲ့ အခြားအခြေခံ
+                        နည်းပညာများကို လေ့လာနိုင်ပါတယ်။
+                    </p>
+
+                    <a
+                        href="categories/fiber-optic-basics.html"
+                        class="read-more"
+                    >
+                        Start Learning →
+                    </a>
+
+                </div>
 
 
-            <a
-                href="categories/fiber-optic-basics.html"
-                class="read-more"
-            >
-                Start Learning →
-            </a>
+                <!-- CATEGORY 02 -->
 
-        </div>
+                <div class="card searchable">
 
+                    <div class="card-icon">
+                        📡
+                    </div>
+
+                    <h3>
+                        FTTH
+                    </h3>
+
+                    <p>
+                        OLT၊ ONU၊ Splitter၊ ODF နဲ့
+                        FTTH Network ရဲ့
+                        အခြေခံဖွဲ့စည်းပုံနဲ့
+                        လုပ်ဆောင်ပုံတွေကို လေ့လာနိုင်ပါတယ်။
+                    </p>
+
+                    <a
+                        href="categories/ftth.html"
+                        class="read-more"
+                    >
+                        Start Learning →
+                    </a>
+
+                </div>
+
+
+                <!-- CATEGORY 03 -->
+
+                <div class="card searchable">
+
+                    <div class="card-icon">
+                        🔬
+                    </div>
+
+                    <h3>
+                        OTDR & OPM
+                    </h3>
+
+                    <p>
+                        OTDR၊ Fresnel Reflection၊
+                        Dead Zone၊ Optical Power
+                        Testing နဲ့ Fiber Testing
+                        ဆိုင်ရာ အကြောင်းအရာများကို
+                        လေ့လာနိုင်ပါတယ်။
+                    </p>
+
+                    <a
+                        href="categories/otdr-and-opm.html"
+                        class="read-more"
+                    >
+                        Start Learning →
+                    </a>
+
+                </div>
+
+
+                <!-- CATEGORY 04 -->
+
+                <div class="card searchable">
+
+                    <div class="card-icon">
+                        🔧
+                    </div>
+
+                    <h3>
+                        Splicing
+                    </h3>
+
+                    <p>
+                        Fiber Optic Cable တွေကို
+                        Fusion Splicing အသုံးပြုပြီး
+                        Fiber နှစ်ချောင်းကို
+                        ဘယ်လိုဆက်သွယ်သလဲဆိုတာ
+                        လေ့လာနိုင်ပါတယ်။
+                    </p>
+
+                    <a
+                        href="categories/splicing.html"
+                        class="read-more"
+                    >
+                        Start Learning →
+                    </a>
+
+                </div>
+
+
+                <!-- CATEGORY 05 -->
+
+                <div class="card searchable">
+
+                    <div class="card-icon">
+                        📚
+                    </div>
+
+                    <h3>
+                        All Articles
+                    </h3>
+
+                    <p>
+                        Fiber Optic နည်းပညာဆိုင်ရာ
+                        ဆောင်းပါးအားလုံးကို
+                        Category အလိုက်
+                        တစ်နေရာတည်းမှာ
+                        စုစည်းဖတ်ရှုနိုင်ပါတယ်။
+                    </p>
+
+                    <a
+                        href="categories/all-articles.html"
+                        class="read-more"
+                    >
+                        View All Articles →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
 
 
         <!-- =========================
-             CATEGORY 02
-             FTTH
-        ========================== -->
+             LATEST ARTICLES
+        ========================= -->
 
-        <div class="card searchable">
+        <section
+            class="section"
+            id="articles"
+        >
 
-            <div class="card-icon">
-                📡
+            <div class="section-heading">
+
+                <span class="section-label">
+                    KNOWLEDGE
+                </span>
+
+                <h2>
+                    Latest Articles
+                </h2>
+
+                <p>
+                    Fiber Optic နည်းပညာဆိုင်ရာ
+                    လက်တွေ့အသုံးချနိုင်တဲ့ ဗဟုသုတတွေကို
+                    လေ့လာနိုင်ပါတယ်။
+                </p>
+
             </div>
 
 
-            <h3>
-                FTTH
-            </h3>
-
-
-            <p>
-                OLT၊ ONU၊ Splitter၊ ODF နဲ့
-                FTTH Network ရဲ့
-                အခြေခံဖွဲ့စည်းပုံနဲ့
-                လုပ်ဆောင်ပုံတွေကို လေ့လာနိုင်ပါတယ်။
-            </p>
-
-
-            <a
-                href="categories/ftth.html"
-                class="read-more"
+            <div
+                class="articles"
+                id="latestArticles"
             >
-                Start Learning →
-            </a>
 
-        </div>
+                <!-- =================================================
+                     AUTO LATEST ARTICLES
 
+                     IMPORTANT:
+                     build_articles.py က
+                     ဒီ marker နှစ်ခုကြားမှာ
+                     နောက်ဆုံးထွက် Article ၃ ခုကို
+                     အလိုအလျောက်ထည့်ပေးမယ်။
+
+                     ဒီ marker တွေကို မဖျက်ပါနဲ့။
+                ================================================== -->
+
+                <!-- LATEST-ARTICLES-START -->
+
+                <div
+                    class="article searchable latest-article"
+                    data-date="2026-08-31T00:00:00+07:00"
+                >
+
+                    <span class="article-number">
+                        01
+                    </span>
+
+                    <h3>
+                        OLT (Optical Line Terminal) ဆိုတာဘာလဲ?
+                    </h3>
+
+                    <p class="article-meta">
+
+                        FTTH
+                        •
+                        Beginner
+
+                        <br>
+
+                        📅 August 31, 2026
+
+                        <br>
+
+                        🕐 00:00
+
+                    </p>
+
+                    <p>
+                        FTTH နှင့် PON Network တွင် OLT ၏
+                        အလုပ်လုပ်ပုံ၊ Data Flow၊
+                        အဓိက Function များနှင့်
+                        Technical Specifications များကို
+                        လေ့လာနိုင်ပါသည်။
+                    </p>
+
+                    <a
+                        href="articles/olt.html"
+                        class="read-more"
+                    >
+                        Read Article →
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="article searchable latest-article"
+                    data-date="2026-08-30T15:30:00+07:00"
+                >
+
+                    <span class="article-number">
+                        02
+                    </span>
+
+                    <h3>
+                        Fiber Optic Loss
+                    </h3>
+
+                    <p class="article-meta">
+
+                        Fiber Optic Basics
+                        •
+                        Beginner
+
+                        <br>
+
+                        📅 August 30, 2026
+
+                        <br>
+
+                        🕐 15:30
+
+                    </p>
+
+                    <p>
+                        Fiber Optic Loss ဆိုတာဘာလဲ၊
+                        Loss ဖြစ်စေတဲ့ အကြောင်းရင်းများနဲ့
+                        Fiber Link Performance အပေါ်
+                        ဘယ်လိုသက်ရောက်သလဲ
+                        လေ့လာနိုင်ပါတယ်။
+                    </p>
+
+                    <a
+                        href="articles/fiber-loss.html"
+                        class="read-more"
+                    >
+                        Read Article →
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="article searchable latest-article"
+                    data-date="2026-08-30T10:00:00+07:00"
+                >
+
+                    <span class="article-number">
+                        03
+                    </span>
+
+                    <h3>
+                        Mode Field Diameter (MFD)
+                    </h3>
+
+                    <p class="article-meta">
+
+                        Fiber Optic Basics
+                        •
+                        Intermediate
+
+                        <br>
+
+                        📅 August 30, 2026
+
+                        <br>
+
+                        🕐 10:00
+
+                    </p>
+
+                    <p>
+                        Mode Field Diameter (MFD) ဆိုတာဘာလဲ၊
+                        Physical Core Diameter နဲ့ ဘာကွာသလဲ၊
+                        Wavelength၊ Splicing၊ Coupling နဲ့
+                        Bend Performance တို့နဲ့
+                        ဘယ်လိုဆက်နွယ်သလဲ လေ့လာနိုင်ပါတယ်။
+                    </p>
+
+                    <a
+                        href="articles/mode-field-diameter.html"
+                        class="read-more"
+                    >
+                        Read Article →
+                    </a>
+
+                </div>
+
+
+                <!-- LATEST-ARTICLES-END -->
+
+            </div>
+
+        </section>
 
 
         <!-- =========================
-             CATEGORY 03
-             OTDR & OPM
-        ========================== -->
+             ABOUT
+        ========================= -->
 
-        <div class="card searchable">
+        <section
+            class="section"
+            id="about"
+        >
 
-            <div class="card-icon">
-                🔬
+            <div class="section-heading">
+
+                <span class="section-label">
+                    ABOUT
+                </span>
+
+                <h2>
+                    About Fiber Optic Hub
+                </h2>
+
+                <p>
+                    Fiber Optic နည်းပညာကို
+                    လေ့လာလိုသူများအတွက်
+                    Knowledge Sharing Platform
+                </p>
+
             </div>
 
 
-            <h3>
-                OTDR & OPM
-            </h3>
+            <div class="about-box">
+
+                <p>
+
+                    <strong>
+                        Fiber Optic Hub
+                    </strong>
+
+                    သည် Fiber Optic နှင့် Network
+                    နည်းပညာဆိုင်ရာ ဗဟုသုတများကို
+                    လွယ်ကူစွာ လေ့လာနိုင်ရန်
+                    ရည်ရွယ်ထားသော
+                    Knowledge Sharing Site ဖြစ်ပါတယ်။
+
+                </p>
 
 
-            <p>
-                OTDR၊ Fresnel Reflection၊
-                Dead Zone၊ Optical Power
-                Testing နဲ့ Fiber Testing
-                ဆိုင်ရာ အကြောင်းအရာများကို
-                လေ့လာနိုင်ပါတယ်။
-            </p>
+                <p>
+
+                    Fiber Optic Basics၊
+                    FTTH၊
+                    OTDR & OPM နဲ့
+                    Troubleshooting စသည့်
+                    အကြောင်းအရာများကို
+                    အခြေခံမှစပြီး လေ့လာနိုင်အောင်
+                    စုစည်းပေးထားပါတယ်။
+
+                </p>
 
 
-            <a
-                href="categories/otdr-and-opm.html"
-                class="read-more"
-            >
-                Start Learning →
-            </a>
+                <p class="about-tagline">
+                    Learn • Practice • Share
+                </p>
 
-        </div>
-
-
-
-        <!-- =========================
-             CATEGORY 04
-             TROUBLESHOOTING
-        ========================== -->
-
-        <div class="card searchable">
-
-            <div class="card-icon">
-                🛠
             </div>
 
+        </section>
 
-            <h3>
-                Troubleshooting
-            </h3>
+    </main>
 
 
-            <p>
-                Fiber Optic Network မှာ
-                ဖြစ်တတ်တဲ့ Problem တွေကို
-                ရှာဖွေဖော်ထုတ်ပြီး
-                ဖြေရှင်းနိုင်တဲ့ နည်းလမ်းတွေကို
-                လေ့လာနိုင်ပါတယ်။
-            </p>
+    <!-- =========================
+         FOOTER
+    ========================= -->
 
-
-            <a
-                href="categories/troubleshooting.html"
-                class="read-more"
-            >
-                Start Learning →
-            </a>
-
-        </div>
-
-
-
-        <!-- =========================
-             CATEGORY 05
-             ALL ARTICLES
-        ========================== -->
-
-        <div class="card searchable">
-
-            <div class="card-icon">
-                📚
-            </div>
-
-
-            <h3>
-                All Articles
-            </h3>
-
-
-            <p>
-                Fiber Optic နည်းပညာဆိုင်ရာ
-                ဆောင်းပါးအားလုံးကို
-                Category အလိုက်
-                တစ်နေရာတည်းမှာ
-                စုစည်းဖတ်ရှုနိုင်ပါတယ်။
-            </p>
-
-
-            <a
-                href="categories/all-articles.html"
-                class="read-more"
-            >
-                View All Articles →
-            </a>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     LATEST ARTICLES
-========================= -->
-
-<section id="articles">
-
-    <div class="section-heading">
-
-        <span class="section-label">
-            KNOWLEDGE
-        </span>
-
-
-        <h2>
-            Latest Articles
-        </h2>
-
-
-        <p>
-            Fiber Optic နည်းပညာဆိုင်ရာ
-            လက်တွေ့အသုံးချနိုင်တဲ့ ဗဟုသုတတွေကို
-            လေ့လာနိုင်ပါတယ်။
-        </p>
-
-    </div>
-
-
-
-    <div class="articles">
-
-
-        <!-- ARTICLE 01 -->
-
-        <div class="article searchable">
-
-            <span class="article-number">
-                01
-            </span>
-
-
-            <h3>
-                What is Fiber Optic?
-            </h3>
-
-
-            <p>
-                Fiber Optic ဆိုတာဘာလဲ၊
-                Light Signal ကိုအသုံးပြုပြီး
-                Data တွေကို ဘယ်လိုပို့ဆောင်သလဲ
-                လေ့လာနိုင်ပါတယ်။
-            </p>
-
-
-            <a
-                href="articles/fiber-optic.html"
-                class="read-more"
-            >
-                Read Article →
-            </a>
-
-        </div>
-
-
-
-        <!-- ARTICLE 02 -->
-
-        <div class="article searchable">
-
-            <span class="article-number">
-                02
-            </span>
-
-
-            <h3>
-                Single Mode vs Multimode
-            </h3>
-
-
-            <p>
-                Single Mode Fiber (SMF) နဲ့
-                Multimode Fiber (MMF) တို့ရဲ့
-                Core Size၊ Distance နဲ့
-                အသုံးပြုပုံ ကွာခြားချက်တွေကို
-                လေ့လာနိုင်ပါတယ်။
-            </p>
-
-
-            <a
-                href="articles/single-mode-vs-multimode.html"
-                class="read-more"
-            >
-                Read Article →
-            </a>
-
-        </div>
-
-
-
-        <!-- ARTICLE 03 -->
-
-        <div class="article searchable">
-
-            <span class="article-number">
-                03
-            </span>
-
-
-            <h3>
-                How Does an OTDR Work?
-            </h3>
-
-
-            <p>
-                OTDR ရဲ့ အခြေခံလုပ်ဆောင်ပုံနဲ့
-                Fiber Testing မှာ
-                ဘယ်လိုအသုံးပြုသလဲဆိုတာ
-                လေ့လာနိုင်ပါတယ်။
-            </p>
-
-
-            <a
-                href="articles/otdr.html"
-                class="read-more"
-            >
-                Read Article →
-            </a>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section
-    id="about"
-    class="about-section"
->
-
-    <div class="section-heading">
-
-        <span class="section-label">
-            ABOUT
-        </span>
-
-
-        <h2>
-            About Fiber Optic Hub
-        </h2>
-
-
-        <p>
-            Fiber Optic နည်းပညာကို
-            လေ့လာလိုသူများအတွက်
-            Knowledge Sharing Platform
-        </p>
-
-    </div>
-
-
-
-    <div class="about-box">
-
-        <p>
-
-            <strong>
-                Fiber Optic Hub
-            </strong>
-
-            သည် Fiber Optic နှင့် Network
-            နည်းပညာဆိုင်ရာ ဗဟုသုတများကို
-            လွယ်ကူစွာ လေ့လာနိုင်ရန်
-            ရည်ရွယ်ထားသော
-            Knowledge Sharing Site ဖြစ်ပါတယ်။
-
-        </p>
-
-
-        <p>
-
-            Fiber Optic Basics၊
-            FTTH၊
-            OTDR & OPM နဲ့
-            Troubleshooting စသည့်
-            အကြောင်းအရာများကို
-            အခြေခံမှစပြီး လေ့လာနိုင်အောင်
-            စုစည်းပေးထားပါတယ်။
-
-        </p>
-
-
-        <p class="about-tagline">
-            Learn • Practice • Share
-        </p>
-
-    </div>
-
-</section>
-
-
-</main>
-
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    <div class="footer-logo">
-        🔵 Fiber <span>Optic Hub</span>
-    </div>
-
-
-    <p>
-        © 2026 Fiber Optic Hub
-    </p>
-
-
-    <p class="footer-tagline">
-        Learn • Practice • Share
-    </p>
-
+    <footer>
+    <div class="logo" style="font-size: 1.1rem; margin-bottom: 8px;">🌐 Fiber <span>Optic Hub</span></div>
+    <p>© 2026 Fiber Optic Hub. All rights reserved.</p>
+    <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">Learn • Practice • Share</p>
 </footer>
 
 
 
-<script src="js/index.js"></script>
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
 
+    <script src="js/index.js"></script>
 
 </body>
 
