@@ -102,28 +102,35 @@ def update_all_articles_page(articles_data):
         content = f.read()
 
     cards_html = ""
-    for article in articles_data:
+    for idx, article in enumerate(articles_data, 1):
+        num_str = f"{idx:02d}"
         cards_html += f'''
-        <div class="article-card">
-            <span class="category-tag">{article['category']}</span>
-            <h3><a href="{article['url']}">{article['title']}</a></h3>
-            <p>{article['description']}</p>
-            <div class="card-meta">
-                <span>{article['level']} • {article['readingTime']}</span>
-                <span>{article['date']}</span>
-            </div>
-        </div>
-        '''
+<a class="related-card searchable" href="{article['url']}">
+    <span class="article-number">{num_str}</span>
+    <h3>{article['title']}</h3>
+    <p class="article-meta">
+        {article['category']} • {article['level']}<br/>
+        📅 {article['date']}<br/>
+        ⏱️ {article['readingTime']}
+    </p>
+    <p>{article['description']}</p>
+    <span class="read-more">Read Article →</span>
+</a>'''
 
-    # all-articles.html ထဲက <!-- ARTICLES_LIST_START --> နဲ့ <!-- ARTICLES_LIST_END --> ကြားထဲ Inject လုပ်မည်
-    pattern = r"(<!-- ARTICLES_LIST_START -->)(.*?)(<!-- ARTICLES_LIST_END -->)"
-    replacement = f"\\1\n{cards_html}\n\\3"
-    
-    if re.search(pattern, content, re.DOTALL):
-        updated_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+    # all-articles.html ထဲက <!-- AUTO-ARTICLES-START --> နဲ့ <!-- AUTO-ARTICLES-END --> ကြားထဲ Inject လုပ်မည်
+    pattern_old = r"(<!-- AUTO-ARTICLES-START -->)(.*?)(<!-- AUTO-ARTICLES-END -->)"
+    pattern_new = r"(<!-- ARTICLES_LIST_START -->)(.*?)(<!-- ARTICLES_LIST_END -->)"
+
+    if re.search(pattern_old, content, re.DOTALL):
+        updated_content = re.sub(pattern_old, f"\\1\n{cards_html}\n\\3", content, flags=re.DOTALL)
         with open(ALL_ARTICLES_HTML, "w", encoding="utf-8") as f:
             f.write(updated_content)
-        print(f"✅ Updated Category Page: {ALL_ARTICLES_HTML}")
+        print(f"✅ Updated Category Page (Old Marker): {ALL_ARTICLES_HTML}")
+    elif re.search(pattern_new, content, re.DOTALL):
+        updated_content = re.sub(pattern_new, f"\\1\n{cards_html}\n\\3", content, flags=re.DOTALL)
+        with open(ALL_ARTICLES_HTML, "w", encoding="utf-8") as f:
+            f.write(updated_content)
+        print(f"✅ Updated Category Page (New Marker): {ALL_ARTICLES_HTML}")
 
 if __name__ == "__main__":
     build_articles()
